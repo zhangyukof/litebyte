@@ -9,28 +9,28 @@ CreateDate:2019-05-22
 LastModifiedDate:2019-12-16
 GitHub:https://github.com/zhangyukof/litebyte
 
-Intro:
+## Intro:
 LiteByte is a lightweight binary data interchange format.
 Small size and easy to use are the design goals.
 
-Features：
+## Features：
 1.Compact binary data format with small data volume.
 2.Define your own type like wirte a class, easy to use.
 
-Implementation approach：
+## Implementation approach：
 An object is divided into two parts: 
 structure, which is defined by a configuration file, 
 and value, which is used for network transfer.
 
-Usage：
-(1)Create structure file [CustomType.lbs]（LiteByte Schema is a text file）
+## Usage：
+(1)Create structure file CustomType.lbs（LiteByte Schema is a text file）
 (2)Define object fields (write structure, type, and name just as you write a class)
 (3)Use api LBUtil.Serialize(typeName, object) Serializes the object into binary data,
    Use api LBUtil.Deserilize(typeName, bytes) Deserialize binary data into objects.
 
-# BaseTypes
+## BaseTypes
 Support for 38 data types:
------------------- Bit(7 types) ------------------
+### Bit(7 types)
 Type:Bit1(Boolean)  Size:1Bit    Value Range:0 ~ 1
 Type:Bit2(Byte)     Size:2Bit    Value Range:0 ~ 3
 Type:Bit3(Byte)     Size:3Bit    Value Range:0 ~ 7
@@ -39,7 +39,7 @@ Type:Bit5(Byte)     Size:5Bit    Value Range:0 ~ 31
 Type:Bit6(Byte)     Size:6Bit    Value Range:0 ~ 63
 Type:Bit7(Byte)     Size:7Bit    Value Range:0 ~ 127
 
------------------- Integer(16 types) ------------------
+### Integer(16 types)
 Type:Int8(sbyte)    Size:1Byte   Value Range:-128 ~ 127
 Type:Int16(short)   Size:2Byte   Value Range:-32768 ~ -32767
 Type:Int24(int)     Size:3Byte   Value Range:-8388608 ~ 8388607
@@ -58,14 +58,14 @@ Type:UInt48(ulong)	Size:6Byte   Value Range:0 ~ 281474976710655
 Type:UInt56(ulong)	Size:7Byte   Value Range:0 ~ 72057594037927935
 Type:UInt64(ulong)	Size:8Byte   Value Range:0 ~ 18446744073709551615
 
------------------- Float(5 types) ------------------
+### Float(5 types)
 Type:Float8(single)   Size:1  Significant Digits:7Bit   Value Range:0/255 ~ 255/255
 Type:Float16(single)  Size:2  Significant Digits:3Bit   Value Range:±6.55E +4
 Type:Float24(single)  Size:3  Significant Digits:5Bit   Value Range:±1.8447E +19
 Type:Float32(single)  Size:4  Significant Digits:7Bit   Value Range:±3.402823E +38
 Type:Float64(double)  Size:8  Significant Digits:15Bit  Value Range:±1.7976931348623157E +308
 
------------------- Variable Integer(7 types) ------------------
+### Variable Integer(7 types)
 Type:VarInt16(short)  Size:1Bit + 1~2Byte  Value Range:Same as Int16
 Type:VarInt32(int)    Size:2Bit + 1~4Byte  Value Range:Same as Int32
 Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64
@@ -76,23 +76,23 @@ Type:VarUInt64(int)   Size:3Bit + 1~8Byte	Value Range::Same as UInt64
 
 Type:VarLength(uint)  Size:2Bit + 1~4Byte	Value Range:-1 ~ 1073741821(uint.MaxValue / 2 - 1)
 
------------------- String(3 Encodings) ------------------
+### String(3 Encodings)
 Type:UTF8		Size:1~4Byte	MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes
 Type:Unicode	Size:2Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) x 2 Bytes
 Type:ASCII		Size:1Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes
 
------------------- Complex Type(2 types) ------------------
+### Complex Type(2 types)
 Type:Array		 Expression:{TypeName}[]
 // (Unimplemented)Type:Dictionary xpression:Dictionary<{BaseType}, {TypeName}>
 Type:CustomType  Expression:Different name with baseType, is CustomType
 
------------------- Others ------------------
+### Others
 It is recommended that fields be defined with as small a data type as possible，
 This reduces the size of the serialized data.
 
 You can give nicknames to basic data types, Define your own style for writing.
 
------------------- Custom Type Config(LiteByte Schema) Samples ------------------
+### Custom Type Config(LiteByte Schema) Samples
 The base types in the following samples apply the following config by default.
 Bit1      = bool
 Int8      = sbyte
@@ -103,7 +103,8 @@ VarInt64  = long
 VarUInt64 = ulong
 UTF8      = string
 
-BaseType Sample 1:
+#### BaseType Sample 1:
+```cs
 struct BaseTypeST {
 
 	// Bit
@@ -129,26 +130,33 @@ struct BaseTypeST {
 	string stringValue;
 
 }
+```
 
-Array sample 1:
+#### Array sample 1:
+```cs
 struct ArrayST {
 	int[] ids;	
 }
+```
 
-Array sample 2:
+#### Array sample 2:
+```cs
 struct ArrayST {
 	string[] names;	
 }
-
-Login info Sample:
+```
+#### Login info Sample:
+```cs
 struct LoginInfoST {
 
 	string username;
 	string password;
 
 }
+```
 
-User info sample:
+#### User info sample:
+```cs
 struct UserInfoST {
 
 	uint id;
@@ -162,6 +170,7 @@ struct UserInfoST {
 	bool isVip;
 
 }
+```
 
 # Data Type Table
 Bit：
