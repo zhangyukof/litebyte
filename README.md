@@ -9,7 +9,7 @@ LiteByte is a lightweight binary data interchange format
 **GitHub**:https://github.com/zhangyukof/litebyte
 
 ## Intro:
-LiteByte is a lightweight binary data interchange format.
+LiteByte is a lightweight binary data interchange format.<br/>
 Small size and easy to use are the design goals.
 
 ## Features：
