@@ -2,12 +2,11 @@
 LiteByte is a lightweight binary data interchange format
 
 # Explain
-LiteByte
-Version:0.6.10
-Author:ZhangYu
-CreateDate:2019-05-22
-LastModifiedDate:2019-12-16
-GitHub:https://github.com/zhangyukof/litebyte
+**Version:**0.6.10<br/>
+**Author:**ZhangYu<br/>
+**CreateDate:**2019-05-22<br/>
+**LastModifiedDate:**2019-12-16<br/>
+**GitHub:**https://github.com/zhangyukof/litebyte
 
 ## Intro:
 LiteByte is a lightweight binary data interchange format.
