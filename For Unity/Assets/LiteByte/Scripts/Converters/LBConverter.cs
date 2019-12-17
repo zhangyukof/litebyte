@@ -2,6 +2,7 @@
 // MIT License
 //
 // Copyright(c) 2019 ZhangYu
+// https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +37,6 @@ namespace LiteByte.Converters {
 
     /// <summary>
     /// <para>LiteByte Converter</para>
-    /// <para>参考手册 | Reference:https://segmentfault.com/u/bingfengbaidu</para>
     /// </summary>
     public static class LBConverter {
 

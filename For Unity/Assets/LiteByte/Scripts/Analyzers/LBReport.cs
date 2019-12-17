@@ -2,6 +2,7 @@
 // MIT License
 //
 // Copyright(c) 2019 ZhangYu
+// https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +34,6 @@ namespace LiteByte.Analyzers {
 
     /// <summary>
     /// <para> 语法分析结果 | Syntax analysis report </para>
-    /// <para>参考手册 | Reference:https://segmentfault.com/u/bingfengbaidu</para>
     /// </summary>
     public class LBReport {
 
