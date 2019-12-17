@@ -1,0 +1,8 @@
+/// <summary> Color </summary>
+struct Color {
+
+	Float8 r;
+	Float8 g;
+	Float8 b;
+
+}

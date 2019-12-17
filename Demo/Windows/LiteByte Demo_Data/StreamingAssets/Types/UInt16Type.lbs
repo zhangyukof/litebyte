@@ -1,0 +1,6 @@
+// Int Type
+struct UInt16Type {
+
+	UInt16 uint16;
+
+}

@@ -1,0 +1,6 @@
+// VarUInt Type
+struct VarUInt16Type {
+
+	VarUInt16 vuint16;
+
+}

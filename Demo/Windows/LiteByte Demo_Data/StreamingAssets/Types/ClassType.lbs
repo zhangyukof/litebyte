@@ -1,0 +1,8 @@
+/// <summary> Vector3 </summary>
+class ClassType {
+
+	ClassType2 a;
+	ClassType2 b;
+	ClassType2 c;
+
+}

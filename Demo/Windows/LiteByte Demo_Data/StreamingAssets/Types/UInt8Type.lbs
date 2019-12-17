@@ -1,0 +1,6 @@
+// Int Type
+struct UInt8Type {
+
+	UInt8 uint8;
+
+}
