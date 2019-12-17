@@ -171,8 +171,8 @@ struct UserInfoST {
 }
 ```
 
-# Data Type Table
-**Bit**：
+## Data Type Table
+###Bit：
  Type | ByteSize |    C#   |Java(Unimpl)  | C++(Unimpl) | Go(Unimpl)   <br/>
 Bit1      1Bit       bool       boolean        char          bool<br/>
 Bit2      2Bit       byte         byte         char          uint8<br/>
@@ -182,7 +182,7 @@ Bit5      5Bit       byte         byte         char          uint8<br/>
 Bit6      6Bit       byte         byte         char          uint8<br/>
 Bit7      7Bit       byte         byte         char          uint8<br/>
 
-**Integer**：
+###Integer：
 Int8     1Byte      byte         byte         char          int8<br/>
 Int16    2Byte      short        short        short         int16<br/>
 Int24    3Byte      int          int          int           int32<br/>
@@ -201,14 +201,14 @@ UInt48   6Byte      ulong        ulong  unsigned long long  uint64<br/>
 UInt56   7Byte      ulong        ulong  unsigned long long  uint64<br/>
 UInt64   8Byte      ulong        ulong  unsigned long long  uint64<br/>
 
-**Float**：
+###Float：
 Float8   1Byte      float       float         float         float32<br/>
 Float16  2Byte      float       float         float         float32<br/>
 Float24  3Byte      float       float         float         float32<br/>
 Float32  4Byte      float       float         float         float32<br/>
 Float64  8Byte      double      double        double        float64<br/>
 
-**Variable Integer**：
+###Variable Integer：
 VarInt16 1Bit+1~2Byte short      short         short         int16<br/>
 VarInt32 2Bit+1~4Byte int        int           int           int32<br/>
 VarInt64 3Bit+1~8Byte long       long          long long     int64<br/>
@@ -219,7 +219,7 @@ VarUInt64 3Bit+1~8Byte ulong     ulong   unsigned long long  uint64<br/>
 
 VarLength 2Bit+1~4Byte int        int           int           int32<br/>
 
-**String**:
+###String:
 UTF8    1~4Byte     string      String        string        string<br/>
 Unicode   2Byte     string      String        string        string<br/>
 ASCII     1Byte     string      String        string        string<br/>
