@@ -1,0 +1,17 @@
+/// <summary> 基本类型测试 | Base type test </summary>
+struct BaseType {
+
+	bool tBool;
+	sbyte tSByte;
+	byte tByte;
+	short tShort;
+	int tInt;
+	long tLong;
+	ushort tUShort;
+	uint tUInt;
+	ulong tULong;
+	float tFloat;
+	double tDouble;
+	string tString;
+	
+}

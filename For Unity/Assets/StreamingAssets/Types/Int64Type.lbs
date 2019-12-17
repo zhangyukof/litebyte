@@ -1,0 +1,6 @@
+// Int Type
+struct Int64Type {
+
+	Int64 int64;
+
+}

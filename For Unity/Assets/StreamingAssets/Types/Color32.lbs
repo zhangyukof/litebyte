@@ -1,0 +1,9 @@
+/// <summary> Color32 </summary>
+struct Color32 {
+
+	Float8 r;
+	Float8 g;
+	Float8 b;
+	Float8 a;
+
+}

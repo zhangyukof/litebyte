@@ -1,0 +1,6 @@
+// String Type
+struct UTF8Type {
+
+	UTF8 str;
+
+}

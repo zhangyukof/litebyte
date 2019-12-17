@@ -1,0 +1,6 @@
+// Float Type
+struct Float64Type {
+
+	Float64 float64;
+
+}
