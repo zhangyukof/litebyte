@@ -1,7 +1,7 @@
-# litebyte
-Lightweight data interchange format
+# LiteByte
+LiteByte is a lightweight binary data interchange format
 
-============================== Explain ==============================
+# Explain
 LiteByte
 Version:0.6.10
 Author:ZhangYu
@@ -28,7 +28,7 @@ Usage：
 (3)Use api LBUtil.Serialize(typeName, object) Serializes the object into binary data,
    Use api LBUtil.Deserilize(typeName, bytes) Deserialize binary data into objects.
 
-=========================== BaseTypes ===========================
+# BaseTypes
 Support for 38 data types:
 ------------------ Bit(7 types) ------------------
 Type:Bit1(Boolean)  Size:1Bit    Value Range:0 ~ 1
@@ -163,7 +163,7 @@ struct UserInfoST {
 
 }
 
-============================== Data Type Table ==============================
+# Data Type Table
 Bit：
  Type | ByteSize |    C#   |Java(Unimpl)  | C++(Unimpl) | Go(Unimpl)   
 Bit1      1Bit       bool       boolean        char          bool
