@@ -2,7 +2,7 @@
 LiteByte is a lightweight binary data interchange format
 
 # Explain
-**Version:**0.6.10<br/>
+**Version**:0.6.10<br/>
 **Author:**ZhangYu<br/>
 **CreateDate:**2019-05-22<br/>
 **LastModifiedDate:**2019-12-16<br/>
