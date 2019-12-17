@@ -13,7 +13,7 @@ LiteByte is a lightweight binary data interchange format.
 Small size and easy to use are the design goals.
 
 ## Features：
-1.Compact binary data format with small data volume.
+1.Compact binary data format with small data volume.<br/>
 2.Define your own type like wirte a class, easy to use.
 
 ## Implementation approach：
