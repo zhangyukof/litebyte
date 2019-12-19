@@ -919,6 +919,23 @@
         }
         #endregion
 
+        #region PlayerInfo Test
+        public void PlayerInfoTest() {
+            ST_PlayerInfo st = new ST_PlayerInfo();
+            st.id = 100001;
+            st.nickname = "冰封百度";
+            st.gender = 1;
+            st.isVip = true;
+            st.lv = 999;
+            st.hp = 999999;
+            st.mp = 999999;
+            st.exp = 9999999;
+            st.speed = 100.5f;
+
+            ClassTest("PlayerInfo", st);
+        }
+        #endregion
+
         #region Tools
         private void ClassTest<T>(string typeName, T obj, LBObject lbObj = null) where T : new() {
             JsonTest(obj);

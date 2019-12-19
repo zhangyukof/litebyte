@@ -15,6 +15,7 @@
         [ProtoMember(6)] public int hp;
         [ProtoMember(7)] public int mp;
         [ProtoMember(8)] public int exp;
+        [NonSerialized]
         [ProtoMember(9)] public float speed;
 	
     }

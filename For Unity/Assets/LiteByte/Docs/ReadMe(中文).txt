@@ -18,7 +18,7 @@ LiteByte是一种轻量级的二进制数据交换格式。
 把一个对象分为两个部分:结构和值,结构用配置文件定义,值用于网络传输。
 
 使用方法：
-(1)创建结构文件CustomType.lbs （LiteByte Schema 文本文件）
+(1)创建自定义结构文件CustomType.lbs （LiteByte Schema 文本文件）
 (2)定义对象属性(像写类一样写结构、类型和名称)
 (3)调用LBUtil.Serialize(object) 把对象序列化成二进制数据，
    调用LBUtil.Deserilize(bytes) 把二进制数据反序列化成对象
@@ -69,7 +69,7 @@ LiteByte是一种轻量级的二进制数据交换格式。
 类型:VarUInt32(int)		长度:2位 + 1~4字节	值范围:同UInt32
 类型:VarUInt64(int)		长度:3位 + 1~8字节	值范围:同UInt64
 
-类型:VarLength(uint)		长度:2位 + 1~4字节	值范围:-1 ~ 1073741821(uint.MaxValue / 2 - 1)
+类型:VarLength(int)		长度:2位 + 1~4字节	值范围:-1 ~ 1073741821(int.MaxValue / 2 - 1)
 
 ------------------ 字符串类型 1种(3种编码) ------------------
 类型:UTF8		字符长度:1~4字节	总字节长度:(1~4) + (0 ~ 1073741822)
@@ -80,7 +80,7 @@ LiteByte是一种轻量级的二进制数据交换格式。
 支持2种:
 类型:数组		表达式:{类型名称}[]
 // (未实现)类型:字典		表达式:Dictionary<{基本类型}, {类型}>
-类型:自定义类型  表达式:只要不和内置类型重名 即被当作自定义类型
+类型:自定义类型  表达式:只要不和基本类型和数组重名 即被当作自定义类型
 
 ------------------ 其他 ------------------
 建议用尽量小的数据类型定义字段，这样可以减少序列化后的数据大小
@@ -169,7 +169,7 @@ Bit6      6位       byte         byte         char          uint8
 Bit7      7位       byte         byte         char          uint8
 
 整型：
-Int8     1字节      byte         byte         char          int8
+Int8     1字节      sbyte        sbyte        char          int8
 Int16    2字节      short        short        short         int16
 Int24    3字节      int          int          int           int32
 Int32    4字节      int          int          int           int32
