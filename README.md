@@ -1,3 +1,4 @@
+[中文版](https://segmentfault.com/a/1190000021329368)
 # LiteByte
 LiteByte is a lightweight binary data interchange format
 
@@ -27,63 +28,72 @@ and value, which is used for network transfer.
 (3)Use api LBUtil.Serialize(typeName, object) Serializes the object into binary data,<br/>
    Use api LBUtil.Deserilize(typeName, bytes) Deserialize binary data into objects.<br/>
 
-## BaseTypes
-Support for 38 data types:
-### Bit(7 types)
-Type:Bit1(Boolean)  Size:1Bit    Value Range:0 ~ 1<br/>
-Type:Bit2(Byte)     Size:2Bit    Value Range:0 ~ 3<br/>
-Type:Bit3(Byte)     Size:3Bit    Value Range:0 ~ 7<br/>
-Type:Bit4(Byte)     Size:4Bit    Value Range:0 ~ 15<br/>
-Type:Bit5(Byte)     Size:5Bit    Value Range:0 ~ 31<br/>
-Type:Bit6(Byte)     Size:6Bit    Value Range:0 ~ 63<br/>
-Type:Bit7(Byte)     Size:7Bit    Value Range:0 ~ 127<br/>
 
-### Integer(16 types)
-Type:Int8(sbyte)    Size:1Byte   Value Range:-128 ~ 127<br/>
-Type:Int16(short)   Size:2Byte   Value Range:-32768 ~ -32767<br/>
-Type:Int24(int)     Size:3Byte   Value Range:-8388608 ~ 8388607<br/>
-Type:Int32(int)     Size:4Byte   Value Range:-2147483648 ~ 2147483647<br/>
-Type:Int40(long)    Size:5Byte   Value Range:-549755813888 ~ 549755813887<br/>
-Type:Int48(long)    Size:6Byte   Value Range:-140737488355328 ~ 140737488355327<br/>
-Type:Int56(long)    Size:7Byte   Value Range:-36028797018963968 ~ 36028797018963967<br/>
-Type:Int64(long)    Size:8Byte   Value Range:-9223372036854775808 ~ 9223372036854775807<br/>
+### BaseType
+#### Bit(7 Types)
+Type | Size | Value Range
+ --|--|--
+Bit1(Boolean) | 1Bit | 0 ~ 1
+Bit2(Byte)    | 2Bit | 0 ~ 3
+Bit3(Byte)    | 3Bit | 0 ~ 7
+Bit4(Byte)    | 4Bit | 0 ~ 15
+Bit5(Byte)    | 5Bit | 0 ~ 31
+Bit6(Byte)    | 6Bit | 0 ~ 63
+Bit7(Byte)    | 7Bit | 0 ~ 127
 
-Type:UInt8(byte)    Size:1Byte   Value Range:0 ~ 255<br/>
-Type:UInt16(ushort)	Size:2Byte   Value Range:0 ~ 65535<br/>
-Type:UInt24(uint)	Size:3Byte   Value Range:0 ~ 16777215<br/>
-Type:UInt32(uint)	Size:4Byte   Value Range:0 ~ 4294967295<br/>
-Type:UInt40(ulong)	Size:5Byte   Value Range:0 ~ 1099511627775<br/>
-Type:UInt48(ulong)	Size:6Byte   Value Range:0 ~ 281474976710655<br/>
-Type:UInt56(ulong)	Size:7Byte   Value Range:0 ~ 72057594037927935<br/>
-Type:UInt64(ulong)	Size:8Byte   Value Range:0 ~ 18446744073709551615<br/>
+#### Integer(16 Types)
+Type | Size | Value Range
+ --|--|--
+Int8(sbyte) | 1Byte | -128 ~ 127
+Int16(short)    | 2Byte | -32768 ~ -32767
+Int24(int)    | 3Byte | -8388608 ~ 8388607
+Int32(int)    | 4Byte | -2147483648 ~ 2147483647
+Int40(long)    | 5Byte | -549755813888 ~ 549755813887
+Int48(long)    | 6Byte | -140737488355328 ~ 140737488355327
+Int56(long)    | 7Byte | -36028797018963968 ~ 36028797018963967
+Int64(long)    | 8Byte | -9223372036854775808 ~ 9223372036854775807
+UInt8(byte)    | 1Byte | 0 ~ 255
+UInt16(ushort) | 2Byte | 0 ~ 65535
+UInt24(uint)   | 3Byte | 0 ~ 16777215
+UInt32(uint)   | 4Byte | 0 ~ 4294967295
+UInt40(ulong)  | 5Byte | 0 ~ 1099511627775
+UInt48(ulong)  | 6Byte | 0 ~ 281474976710655
+UInt56(ulong)  | 7Byte | 0 ~ 72057594037927935
+UInt64(ulong)  | 8Byte | 0 ~ 18446744073709551615
 
-### Float(5 types)
-Type:Float8(single)   Size:1  Significant Digits:7Bit   Value Range:0/255 ~ 255/255<br/>
-Type:Float16(single)  Size:2  Significant Digits:3Bit   Value Range:±6.55E +4<br/>
-Type:Float24(single)  Size:3  Significant Digits:5Bit   Value Range:±1.8447E +19<br/>
-Type:Float32(single)  Size:4  Significant Digits:7Bit   Value Range:±3.402823E +38<br/>
-Type:Float64(double)  Size:8  Significant Digits:15Bit  Value Range:±1.7976931348623157E +308<br/>
+#### Float(5 Types)
+Type | Size | Significant Digits | Value Range
+ --|--|--|--
+Float8(float)  | 1Byte | 7Bit | 0/255 ~ 255/255
+Float16(float) | 2Byte | 3Bit | ±6.55E +4
+Float24(float) | 3Byte | 5Bit | ±1.8447E +19
+Float32(float) | 4Byte | 7Bit | ±3.402823E +38
+Float64(double) | 8Byte | 15Bit | ±1.7976931348623157E +308
 
-### Variable Integer(7 types)
-Type:VarInt16(short)  Size:1Bit + 1~2Byte  Value Range:Same as Int16<br/>
-Type:VarInt32(int)    Size:2Bit + 1~4Byte  Value Range:Same as Int32<br/>
-Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64<br/>
+#### Variable Integer(7 Types)
+Type | Size | Value Range
+ --|--|--
+VarInt16(short) | 1Bit + 1~2Byte | Same as Int16
+VarInt32(int)   | 2Bit + 1~4Byte | Same as Int32
+VarInt64(long)  | 3Bit + 1~8Byte | Same as Int64
+VarUInt16(ushort) | 1Bit + 1~2Byte | Same as UInt16
+VarUInt32(uint)   | 2Bit + 1~4Byte | Same as UInt32
+VarUInt64(ulong)  | 3Bit + 1~8Byte | Same as UInt64
+VarLength(int)    | 3Bit + 1~8Byte | -1 ~ (Int32.MaxValue/2 - 1)
 
-Type:VarUInt16(short) Size:1Bit + 1~2Byte	Value Range::Same as UInt16<br/>
-Type:VarUInt32(int)   Size:2Bit + 1~4Byte	Value Range::Same as UInt32<br/>
-Type:VarUInt64(int)   Size:3Bit + 1~8Byte	Value Range::Same as UInt64<br/>
-
-Type:VarLength(uint)  Size:2Bit + 1~4Byte	Value Range:-1 ~ 1073741821(uint.MaxValue / 2 - 1)<br/>
-
-### String(3 Encodings)
-Type:UTF8		Size:1~4Byte	MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes<br/>
-Type:Unicode	Size:2Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) x 2 Bytes<br/>
-Type:ASCII		Size:1Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes<br/>
+#### String(3 Encodings)
+Type | Single Char Size | Total Size Range 
+ --|--|--|--
+UTF8(string)  | 1~4Byte | Head(1~4)Byte+Body(0 ~ 1073741822)Byte
+Unicode(string)  | 2Byte |  Head(1~4)Byte+Body(0 ~ 1073741822)x2Byte
+ASCII(string)  | 1Byte |  Head(1~4)Byte+Body(0 ~ 1073741822)Byte
 
 ### Complex Type(2 types)
-Type:Array		 Expression:{TypeName}[]<br/>
-// (Unimplemented)Type:Dictionary xpression:Dictionary<{BaseType}, {TypeName}><br/>
-Type:CustomType  Expression:Different name with baseType, is CustomType<br/>
+ Type | Expression
+ --   | --
+Array  | TypeName[]
+Dictionary(Unimpl) | Dictionary<BaseType, TypeName>
+CustomType | not the same with base types and array names
 
 ### Others
 It is recommended that fields be defined with as small a data type as possible，<br/>
@@ -172,55 +182,43 @@ struct UserInfoST {
 ```
 
 ## Data Type Table
-###Bit：
- Type | ByteSize |    C#   |Java(Unimpl)  | C++(Unimpl) | Go(Unimpl)   <br/>
-Bit1      1Bit       bool       boolean        char          bool<br/>
-Bit2      2Bit       byte         byte         char          uint8<br/>
-Bit3      3Bit       byte         byte         char          uint8<br/>
-Bit4      4Bit       byte         byte         char          uint8<br/>
-Bit5      5Bit       byte         byte         char          uint8<br/>
-Bit6      6Bit       byte         byte         char          uint8<br/>
-Bit7      7Bit       byte         byte         char          uint8<br/>
-
-###Integer：
-Int8     1Byte      byte         byte         char          int8<br/>
-Int16    2Byte      short        short        short         int16<br/>
-Int24    3Byte      int          int          int           int32<br/>
-Int32    4Byte      int          int          int           int32<br/>
-Int40    5Byte      long         long      long long        int64<br/>
-Int48    6Byte      long         long      long long        int64<br/>
-Int56    7Byte      long         long      long long        int64<br/>
-Int64    8Byte      long         long      long long        int64<br/>
-
-UInt8    1Byte      byte         byte         char          uint8<br/>
-UInt16   2Byte      ushort       ushort   unsigned short    uint16<br/>
-UInt24   3Byte      uint         uint     unsigned int      uint32<br/>
-UInt32   4Byte      uint         uint     unsigned int      uint32<br/>
-UInt40   5Byte      ulong        ulong  unsigned long long  uint64<br/>
-UInt48   6Byte      ulong        ulong  unsigned long long  uint64<br/>
-UInt56   7Byte      ulong        ulong  unsigned long long  uint64<br/>
-UInt64   8Byte      ulong        ulong  unsigned long long  uint64<br/>
-
-###Float：
-Float8   1Byte      float       float         float         float32<br/>
-Float16  2Byte      float       float         float         float32<br/>
-Float24  3Byte      float       float         float         float32<br/>
-Float32  4Byte      float       float         float         float32<br/>
-Float64  8Byte      double      double        double        float64<br/>
-
-###Variable Integer：
-VarInt16 1Bit+1~2Byte short      short         short         int16<br/>
-VarInt32 2Bit+1~4Byte int        int           int           int32<br/>
-VarInt64 3Bit+1~8Byte long       long          long long     int64<br/>
-
-VarUInt16 1Bit+1~2Byte ushort    ushort  unsigned short      uint16<br/>
-VarUInt32 2Bit+1~4Byte uint      uint    unsigned int        uint32<br/>
-VarUInt64 3Bit+1~8Byte ulong     ulong   unsigned long long  uint64<br/>
-
-VarLength 2Bit+1~4Byte int        int           int           int32<br/>
-
-###String:
-UTF8    1~4Byte     string      String        string        string<br/>
-Unicode   2Byte     string      String        string        string<br/>
-ASCII     1Byte     string      String        string        string<br/>
-
+ Type | Size | C# | Java(Unimpl) | C++(Unimpl) | Go(Unimpl)
+ -- | -- | -- | -- | -- | -- 
+Bit1 | 1Bit | bool | boolean | char | bool
+Bit2 | 2Bit | byte | byte | char | bool
+Bit3 | 3Bit | byte | byte | char | uint8
+Bit4 | 4Bit | byte | byte | char | uint8
+Bit5 | 5Bit | byte | byte | char | uint8
+Bit6 | 6Bit | byte | byte | char | uint8
+Bit7 | 7Bit | byte | byte | char | uint8
+Int8  | 1Byte | sbyte | sbyte | char      | int8
+Int16 | 2Byte | short | short | short     | int16
+Int24 | 3Byte | int   | int   | int       | int32
+Int32 | 4Byte | int   | int   | int       | int32
+Int40 | 5Byte | long  | long  | long long | int64
+Int48 | 6Byte | long  | long  | long long | int64
+Int56 | 7Byte | long  | long  | long long | int64
+Int64 | 8Byte | long  | long  | long long | int64
+UInt8  | 1Byte | byte   | byte   | char      | uint8
+UInt16 | 2Byte | ushort | ushort | ushort    | uint16
+UInt24 | 3Byte | uint   | uint   | uint      | uint32
+UInt32 | 4Byte | uint   | uint   | uint      | uint32
+UInt40 | 5Byte | ulong  | ulong  | unsigned long long | uint64
+UInt48 | 6Byte | ulong  | ulong  | unsigned long long | uint64
+UInt56 | 7Byte | ulong  | ulong  | unsigned long long | uint64
+UInt64 | 8Byte | ulong  | ulong  | unsigned long long | uint64
+Float8 | 1Byte | float  | float  | float  | float32
+Float16| 2Byte | float  | float  | float  | float32
+Float24| 3Byte | float  | float  | float  | float32
+Float32| 4Byte | float  | float  | float  | float32
+Float64| 8Byte | double | double | double | float64
+VarInt16 | 1Bit+1~2Byte | short  | short  | short   | int16
+VarInt32 | 2Bit+1~4Byte | int    | int    | int     | int32
+VarInt64 | 3Bit+1~8Byte | long   | long   |long long| int64
+VarUInt16 | 1Bit+1~2Byte | ushort  | ushort  |unsigned short   | uint16
+VarUInt32 | 2Bit+1~4Byte | uint    | uint    |unsigned int     | uint32
+VarUInt64 | 3Bit+1~8Byte | ulong   | ulong   |unsigned long long| uint64
+VarLength | 2Bit+1~4Byte | int  | int  | int   | int32
+UTF8    | 1~4Byte | string | string | string | string
+Unicode | 2Byte   | string | string | string | string
+ASCII   | 1Byte   | string | string | string | string
