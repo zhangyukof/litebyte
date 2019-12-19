@@ -224,3 +224,5 @@ VarLength | 2Bit+1~4Byte | int  | int  | int   | int32
 UTF8    | 1~4Byte | string | string | string | string
 Unicode | 2Byte   | string | string | string | string
 ASCII   | 1Byte   | string | string | string | string
+
+Due to limited capabilities, only the C# version has been implemented for the time being
