@@ -83,7 +83,7 @@ VarLength(int)    | 3Bit + 1~8Byte | -1 ~ (Int32.MaxValue/2 - 1)
 
 #### String(3 Encodings)
 Type | Single Char Size | Total Size Range 
- --|--|--|--
+ --|--|--
 UTF8(string)  | 1~4Byte | Head(1~4)Byte+Body(0 ~ 1073741822)Byte
 Unicode(string)  | 2Byte |  Head(1~4)Byte+Body(0 ~ 1073741822)x2Byte
 ASCII(string)  | 1Byte |  Head(1~4)Byte+Body(0 ~ 1073741822)Byte
@@ -94,6 +94,8 @@ ASCII(string)  | 1Byte |  Head(1~4)Byte+Body(0 ~ 1073741822)Byte
 Array  | TypeName[]
 Dictionary(Unimpl) | Dictionary<BaseType, TypeName>
 CustomType | not the same with base types and array names
+
+*Total:38 Types*
 
 ### Others
 It is recommended that fields be defined with as small a data type as possible，<br/>
