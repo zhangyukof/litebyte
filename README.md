@@ -18,9 +18,9 @@ Small size and easy to use are the design goals.
 2.Define your own type like wirte a class, easy to use.
 
 ## Implementation approach：
-An object is divided into two parts: 
-structure, which is defined by a configuration file, 
-and value, which is used for network transfer.
+An object is divided into two parts: <br/>
+Struct, which is defined by a configuration file, as simple as possible for human use.
+Value, which is used for network transfer, as small as possible for transmission.
 
 ## Usage：
 (1)Create structure file CustomType.lbs(LiteByte Schema is a text file)<br/>
