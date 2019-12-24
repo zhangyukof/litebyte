@@ -300,10 +300,10 @@ ASCII   | 1Byte   | string | string | string | string
 4.When defining data formats, it is recommended that fields be defined as small as possible so that the volume of serialized data is smaller.<br/>
 5.You can give nicknames to basic data types, define your own style for writing.<br/>
 6.Support for some unusual data types, includes:<br/>
-Bit2~Bit7 (2~7 bits).<br/>
+Bit2\~Bit7 (2\~7 bits).<br/>
 Int24, Int40, Int48, Int56. (3, 5, 6, 7 bytes).<br/>
 UInt24, UInt40, UInt48, UInt56. (3, 5, 6, 7 bytes).<br/>
-VarLength used to represent the length of string and array. Value range -1~(int.MaxValue/2 - 1).<br/>
+VarLength used to represent the length of string and array. Value range -1\~(int.MaxValue/2 - 1).<br/>
 
 ### Others
 Due to limited capabilities, only the C# version has been implemented for the time being.
