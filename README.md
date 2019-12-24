@@ -1,5 +1,5 @@
 [中文版](https://segmentfault.com/a/1190000021329368)
-# LiteByte
+## LiteByte
 ![LiteByte](web/images/icon_1.png)<br/>
 LiteByte is a lightweight binary data interchange format.<br/>
 Small size and easy to use are the design goals.
@@ -8,7 +8,7 @@ Small size and easy to use are the design goals.
 1.Compact binary data format with small data volume.<br/>
 2.Define your own type like wirte a class, easy to use.<br/>
 
-# Info
+## Info
 **Version**:0.6.10<br/>
 **Author**:ZhangYu<br/>
 **CreateDate**:2019-05-22<br/>
@@ -87,6 +87,20 @@ PlayerInfo info = LBUtil.Deserialize<PlayerInfo>(typeName, bytes);
 ### Output:
 ![Output](web/images/demo_1.png)<br/>
 
+### Code instructions:
+1.Serialize use LBUtil.Serialize("name", obj).<br/>
+2.Deserialize use LBUtil.Deserilize("name", obj).<br/>
+3.Can convert custom struct and class, fields need to be public.<br/>
+4.LBObject is generic transformation object, it can set and get value.It is used to dynamically create new custom structures.<br/>
+  Since it's not very efficient to serialize and deserialize custom structs and classes using reflection, it's a little more efficient     to convert them with LBObject, but it's a little more cumbersome to use, just use it the way you like.<br/>
+
+## Supported data types
+### Includes:
+1.Basic value types:bool、byte、short、int、long.<br/>
+2.string(Support UTF8, Unicode, ASCII three encodings)
+3.Array (type +"[]" will be recognized as an array)
+4.Custom types (Complex type)
+
 ### BaseType
 #### Bit(7 Types)
 Type | Size | Value Range
@@ -159,7 +173,7 @@ CustomType | not the same with base types and array names
 It is recommended that fields be defined with as small a data type as possible，<br/>
 This reduces the size of the serialized data.<br/>
 
-You can give nicknames to basic data types, Define your own style for writing.<br/>
+You can give nicknames to basic data types, define your own style for writing.<br/>
 
 ### Custom Type Config(LiteByte Schema) Samples
 The base types in the following samples apply the following config by default.<br/>
