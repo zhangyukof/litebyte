@@ -97,7 +97,7 @@ PlayerInfo info = LBUtil.Deserialize<PlayerInfo>(typeName, bytes);
 ## Supported data types
 ### Includes:
 1.Basic value types:bool, byte, short, int, long.<br/>
-2.string(Support UTF8, Unicode, ASCII three encodings).<br/>
+2.String(Support UTF8, Unicode, ASCII three encodings).<br/>
 3.Array (type +"\[\]" will be recognized as an array).<br/>
 4.Custom types (Complex type).<br/>
 
