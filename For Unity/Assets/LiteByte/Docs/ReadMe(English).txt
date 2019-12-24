@@ -16,8 +16,8 @@ Features£º
 
 Implementation approach£º
 An object is divided into two parts: 
-structure, which is defined by a configuration file, 
-and value, which is used for network transfer.
+Struct, which is defined by a configuration file, as simple as possible.
+Value, which is used for network transmission, as small as possible.
 
 Usage£º
 (1)Create structure file [CustomType.lbs]£¨LiteByte Schema is a text file£©
