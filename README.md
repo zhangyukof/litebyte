@@ -1,12 +1,12 @@
 [中文版](https://segmentfault.com/a/1190000021329368)
 # LiteByte
 ![LiteByte](web/images/icon_1.png)<br/>
-LiteByte is a lightweight binary data interchange format.
+LiteByte is a lightweight binary data interchange format.<br/>
 Small size and easy to use are the design goals.
 
 ## Features：
 1.Compact binary data format with small data volume.<br/>
-2.Define your own type like wirte a class, easy to use.
+2.Define your own type like wirte a class, easy to use.<br/>
 
 # Info
 **Version**:0.6.10<br/>
