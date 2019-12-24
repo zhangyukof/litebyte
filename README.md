@@ -1,5 +1,6 @@
 [中文版](https://segmentfault.com/a/1190000021329368)
 # LiteByte
+![LiteByte](web/images/icon_1.png)<br/>
 LiteByte is a lightweight binary data interchange format
 
 # Explain
@@ -27,6 +28,67 @@ Value, which is used for network transmission, as small as possible.<br/>
 (3)Use api LBUtil.Serialize(typeName, object) Serializes the object into binary data,<br/>
    Use api LBUtil.Deserilize(typeName, bytes) Deserialize binary data into objects.<br/>
 
+## Code Sample:
+### PlayerInfo.cs(Entity)
+```cs
+/// <summary> PlayerInfo Entity </summary>
+public struct PlayerInfo {
+
+    public uint id;
+    public string nickname;
+    public byte gender;
+    public bool isVip;
+    public int lv;
+    public int hp;
+    public int mp;
+    public int exp;
+
+}
+```
+
+### PlayerInfo.lbs(LiteByte schema)
+```cs
+/// <summary> PlayerInfo config </summary>
+// Just like writing structs in C#, access modifiers can be left unwritten and ignored when reading configuration files
+public struct PlayerInfo {
+
+    public uint id;
+    public string nickname;
+    public byte gender;
+    public bool isVip;
+    public int lv;
+    public int hp;
+    public int mp;
+    public int exp;
+
+}
+```
+
+### Demo.cs
+```cs
+// using LiteByte;
+
+// Create Entity
+PlayerInfo player = new PlayerInfo();
+player.id = 100001;
+player.nickname = "冰封百度";
+player.gender = 1;
+player.isVip = true;
+player.lv = 999;
+player.hp = 999999;
+player.mp = 999999;
+player.exp = 9999999;
+
+// Serialize:
+string typeName = "PlayerInfo";
+byte[] bytes = LBUtil.Serialize(typeName, player);
+
+// Deserialize：
+PlayerInfo info = LBUtil.Deserialize<PlayerInfo>(typeName, bytes);
+```
+
+### Output:
+![Output](web/images/demo_1.png)<br/>
 
 ### BaseType
 #### Bit(7 Types)
