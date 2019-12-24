@@ -2,20 +2,17 @@
 # LiteByte
 ![LiteByte](web/images/icon_1.png)<br/>
 LiteByte is a lightweight binary data interchange format.
-
-# Explain
-**Version**:0.6.10<br/>
-**Author**:ZhangYu<br/>
-**CreateDate**:2019-05-22<br/>
-**LastModifiedDate**:2019-12-16<br/>
-
-## Intro:
-LiteByte is a lightweight binary data interchange format.<br/>
 Small size and easy to use are the design goals.
 
 ## Features：
 1.Compact binary data format with small data volume.<br/>
 2.Define your own type like wirte a class, easy to use.
+
+# Info
+**Version**:0.6.10<br/>
+**Author**:ZhangYu<br/>
+**CreateDate**:2019-05-22<br/>
+**LastModifiedDate**:2019-12-16<br/>
 
 ## Implementation approach：
 An object is divided into two parts: <br/>
