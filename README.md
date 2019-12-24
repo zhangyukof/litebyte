@@ -169,12 +169,6 @@ CustomType | not the same with base types and array names
 
 *Total:38 Types*
 
-### Others
-It is recommended that fields be defined with as small a data type as possible，<br/>
-This reduces the size of the serialized data.<br/>
-
-You can give nicknames to basic data types, define your own style for writing.<br/>
-
 ### Custom Type Config(LiteByte Schema) Samples
 The base types in the following samples apply the following config by default.<br/>
 Bit1      = bool<br/>
@@ -297,4 +291,19 @@ UTF8    | 1~4Byte | string | string | string | string
 Unicode | 2Byte   | string | string | string | string
 ASCII   | 1Byte   | string | string | string | string
 
-Due to limited capabilities, only the C# version has been implemented for the time being
+*Total:38 types*
+
+## Data type description
+1.Bool type is best supported, with a bool type occupying only 1 bit (1/8 bytes).<br/>
+2.Variable length integers are supported(short, int, long, ushort, uint, ulong).<br/>
+3.Support for null values (string, array, object).<br/>
+4.When defining data formats, it is recommended that fields be defined as small as possible so that the volume of serialized data is smaller.<br/>
+5.You can give nicknames to basic data types, define your own style for writing.<br/>
+6.Support for some unusual data types, includes:<br/>
+Bit2~Bit7 (2~7 bits).<br/>
+Int24, Int40, Int48, Int56. (3, 5, 6, 7 bytes).<br/>
+UInt24, UInt40, UInt48, UInt56. (3, 5, 6, 7 bytes).<br/>
+VarLength used to represent the length of string and array. Value range -1~(int.MaxValue/2 - 1).<br/>
+
+### Others
+Due to limited capabilities, only the C# version has been implemented for the time being.
