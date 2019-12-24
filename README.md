@@ -1,7 +1,7 @@
 [中文版](https://segmentfault.com/a/1190000021329368)
 # LiteByte
 ![LiteByte](web/images/icon_1.png)<br/>
-LiteByte is a lightweight binary data interchange format
+LiteByte is a lightweight binary data interchange format.
 
 # Explain
 **Version**:0.6.10<br/>
