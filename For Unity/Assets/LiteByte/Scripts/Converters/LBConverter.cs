@@ -26,7 +26,7 @@
 // Purpose: Convert object to bytes and bytes to object
 // Author: ZhangYu
 // CreateDate: 2019-10-10
-// LastModifiedData: 2019-12-13
+// LastModifiedData: 2019-12-24
 #endregion
 namespace LiteByte.Converters {
 
@@ -40,7 +40,7 @@ namespace LiteByte.Converters {
     /// </summary>
     public static class LBConverter {
 
-        private static LBWriter writer = new LBWriter(256);
+        private static LBWriter writer = new LBWriter(1024);
         private static LBReader reader = new LBReader();
 
         // ===================================== 调用接口 | API =====================================
