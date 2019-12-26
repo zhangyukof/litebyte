@@ -26,7 +26,7 @@
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2019-12-16
+// LastModifiedDate: 2019-12-26
 #endregion
 namespace LiteByte.Converters {
 
@@ -91,7 +91,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit2(byte value) {
             if (value > LBBit2.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt2 valid range:[0~3]";
+                string error = "value:" + value.ToString() + " out of range! Bit2 valid range:[0~3]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -122,7 +122,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit3(byte value) {
             if (value > LBBit3.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt3 valid range:[0~7]";
+                string error = "value:" + value.ToString() + " out of range! Bit3 valid range:[0~7]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -153,7 +153,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit4(byte value) {
             if (value > LBBit4.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt4 valid range:[0~15]";
+                string error = "value:" + value.ToString() + " out of range! Bit4 valid range:[0~15]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -176,7 +176,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit5(byte value) {
             if (value > LBBit5.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt5 valid range:[0~31]";
+                string error = "value:" + value.ToString() + " out of range! Bit5 valid range:[0~31]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -199,7 +199,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit6(byte value) {
             if (value > LBBit6.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt6 valid range:[0~63]";
+                string error = "value:" + value.ToString() + " out of range! Bit6 valid range:[0~63]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -222,7 +222,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit7(byte value) {
             if (value > LBBit7.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt7 valid range:[0~127]";
+                string error = "value:" + value.ToString() + " out of range! Bit7 valid range:[0~127]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
