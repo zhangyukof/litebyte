@@ -91,7 +91,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit2(byte value) {
             if (value > LBBit2.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit2 valid range:[0~3]";
+                string error = "value:" + value.ToString() + " out of range! Bit2 valid range:[0 ~ 3]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -122,7 +122,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit3(byte value) {
             if (value > LBBit3.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit3 valid range:[0~7]";
+                string error = "value:" + value.ToString() + " out of range! Bit3 valid range:[0 ~ 7]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -153,7 +153,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit4(byte value) {
             if (value > LBBit4.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit4 valid range:[0~15]";
+                string error = "value:" + value.ToString() + " out of range! Bit4 valid range:[0 ~ 15]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -176,7 +176,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit5(byte value) {
             if (value > LBBit5.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit5 valid range:[0~31]";
+                string error = "value:" + value.ToString() + " out of range! Bit5 valid range:[0 ~ 31]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -199,7 +199,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit6(byte value) {
             if (value > LBBit6.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit6 valid range:[0~63]";
+                string error = "value:" + value.ToString() + " out of range! Bit6 valid range:[0 ~ 63]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -222,7 +222,7 @@ namespace LiteByte.Converters {
 
         public void WriteBit7(byte value) {
             if (value > LBBit7.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Bit7 valid range:[0~127]";
+                string error = "value:" + value.ToString() + " out of range! Bit7 valid range:[0 ~ 127]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             if (bitLocation > 7) {
@@ -259,7 +259,7 @@ namespace LiteByte.Converters {
         public void WriteInt24(int value) {
             // 检查数值范围 | Check value range
             if (value < LBInt24.MinValue || value > LBInt24.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Int24 valid range:[-8388608~8388607]";
+                string error = "value:" + value.ToString() + " out of range! Int24 valid range:[-8388608 ~ 8388607]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(3);
@@ -281,7 +281,7 @@ namespace LiteByte.Converters {
         public void WriteInt40(long value) {
             // 检查数值范围 | Check value range
             if (value < LBInt40.MinValue || value > LBInt40.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Int40 valid range:[-549755813888~549755813887]";
+                string error = "value:" + value.ToString() + " out of range! Int40 valid range:[-549755813888 ~ 549755813887]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(5);
@@ -296,7 +296,7 @@ namespace LiteByte.Converters {
         public void WriteInt48(long value) {
             // 检查数值范围 | Check value range
             if (value < LBInt48.MinValue || value > LBInt48.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Int48 valid range:[-140737488355328~140737488355327]";
+                string error = "value:" + value.ToString() + " out of range! Int48 valid range:[-140737488355328 ~ 140737488355327]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(6);
@@ -312,7 +312,7 @@ namespace LiteByte.Converters {
         public void WriteInt56(long value) {
             // 检查数值范围 | Check value range
             if (value < LBInt56.MinValue || value > LBInt56.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! Int56 valid range:[-36028797018963968~36028797018963967]";
+                string error = "value:" + value.ToString() + " out of range! Int56 valid range:[-36028797018963968 ~ 36028797018963967]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(7);
@@ -353,7 +353,7 @@ namespace LiteByte.Converters {
         public void WriteUInt24(uint value) {
             // 检查数值范围 | Check value range
             if (value > LBUInt24.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt24 valid range:[0~16777215]";
+                string error = "value:" + value.ToString() + " out of range! UInt24 valid range:[0 ~ 16777215]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(3);
@@ -375,7 +375,7 @@ namespace LiteByte.Converters {
         public void WriteUInt40(ulong value) {
             // 检查数值范围 | Check value range
             if (value > LBUInt40.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt40 valid range:[0~1099511627775]";
+                string error = "value:" + value.ToString() + " out of range! UInt40 valid range:[0 ~ 1099511627775]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(5);
@@ -390,7 +390,7 @@ namespace LiteByte.Converters {
         public void WriteUInt48(ulong value) {
             // 检查数值范围 | Check value range
             if (value > LBUInt48.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt48 valid range:[0~281474976710655]";
+                string error = "value:" + value.ToString() + " out of range! UInt48 valid range:[0 ~ 281474976710655]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(6);
@@ -406,7 +406,7 @@ namespace LiteByte.Converters {
         public void WriteUInt56(ulong value) {
             // 检查数值范围 | Check value range
             if (value > LBUInt56.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! UInt56 valid range:[0~72057594037927935]";
+                string error = "value:" + value.ToString() + " out of range! UInt56 valid range:[0 ~ 72057594037927935]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(7);
@@ -438,7 +438,7 @@ namespace LiteByte.Converters {
         public void WriteFloat8(float value) {
             // 检查数值范围 | Check value range
             if (!IsFloat8(value)) {
-                string error = "value:" + value.ToString() + " out of range! Float8 valid range:[0F~1F (0/255F~255/255F)]";
+                string error = "value:" + value.ToString() + " out of range! Float8 valid range:[0F ~ 1F (0/255F ~ 255/255F)]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
             RequireSize(1);
@@ -448,7 +448,7 @@ namespace LiteByte.Converters {
         public unsafe void WriteFloat16(float value) {
             // 检查数值范围 | Check value range
             if (value > LBFloat16.MaxValue || value < LBFloat16.MinValue) {
-                string error = "value:" + value.ToString() + " out of range! Float16 valid range:[-1.31E+5F~1.31E+5F]";
+                string error = "value:" + value.ToString() + " out of range! Float16 valid range:[-1.31E+5F ~ 1.31E+5F]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
 
@@ -469,7 +469,7 @@ namespace LiteByte.Converters {
         public unsafe void WriteFloat24(float value) {
             // 检查数值范围 | Check value range
             if (value > LBFloat24.MaxValue || value < LBFloat24.MinValue) {
-                string error = "value:" + value.ToString() + " out of range! Float24 valid range:[-3.6893E+19F~3.6893E+19F]";
+                string error = "value:" + value.ToString() + " out of range! Float24 valid range:[-3.6893E+19F ~ 3.6893E+19F]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
 
@@ -515,7 +515,7 @@ namespace LiteByte.Converters {
 
         #region Variable Integer
         public void WriteVarInt16(short value) {
-            // 根据数值范围 写入字节(1比特 + 1~2字节) | Write bytes (1bit + 1~2bytes) according to numeric range
+            // 根据数值范围 写入字节(1比特 + 1 ~ 2字节) | Write bytes (1bit + 1 ~ 2bytes) according to numeric range
             if (value <= LBInt8.MaxValue && value >= LBInt8.MinValue) {
                 WriteBit1(false);
                 WriteInt8((sbyte)value);
@@ -526,7 +526,7 @@ namespace LiteByte.Converters {
         }
 
         public void WriteVarInt32(int value) {
-            // 根据数值范围 写入字节(2比特 + 1~4字节) | Write bytes (2bits + 1~4bytes) according to numeric range
+            // 根据数值范围 写入字节(2比特 + 1 ~ 4字节) | Write bytes (2bits + 1 ~ 4bytes) according to numeric range
             if (value <= LBInt8.MaxValue && value >= LBInt8.MinValue) {
                 WriteBit2(0);
                 WriteInt8((sbyte)value);
@@ -543,7 +543,7 @@ namespace LiteByte.Converters {
         }
 
         public void WriteVarInt64(long value) {
-            // 根据数值范围 写入字节(3比特 + 1~8字节) | Write bytes (3bits + 1~8bytes) according to numeric range
+            // 根据数值范围 写入字节(3比特 + 1 ~ 8字节) | Write bytes (3bits + 1 ~ 8bytes) according to numeric range
             if (value <= LBInt8.MaxValue && value >= LBInt8.MinValue) {
                 WriteBit3(0);
                 WriteInt8((sbyte)value);
@@ -628,10 +628,10 @@ namespace LiteByte.Converters {
         public void WriteVarLength(int value) {
             // 检查数值范围 | Check value range
             if (value < LBVarLength.MinValue || value > LBVarLength.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! VarLength valid range:[-1~1073741822]";
+                string error = "value:" + value.ToString() + " out of range! VarLength valid range:[-1 ~ 1073741822]";
                 throw new ArgumentOutOfRangeException("value", error);
             }
-            // 根据数值范围 写入字节(1~4字节) | Write bytes (1~4 bytes) according to numeric range
+            // 根据数值范围 写入字节(1 ~ 4字节) | Write bytes (1 ~ 4 bytes) according to numeric range
             value = value + 1;
             if (value < 64) {
                 WriteUInt8((byte)(value << 2));
