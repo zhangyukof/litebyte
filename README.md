@@ -9,10 +9,10 @@ Small size and easy to use are the design goals.
 2.Define your own type like wirte a class, easy to use.<br/>
 
 ## Info
-**Version**:0.6.10<br/>
+**Version**:0.6.11<br/>
 **Author**:ZhangYu<br/>
 **CreateDate**:2019-05-22<br/>
-**LastModifiedDate**:2019-12-16<br/>
+**LastModifiedDate**:2019-12-28<br/>
 
 ## Implementation approach：
 An object is divided into two parts: <br/>
