@@ -1,5 +1,5 @@
 /// <summary> 玩家信息测试 | PlayerInfo test </summary>
-struct PlayerInfo {
+class PlayerInfo {
 
 	uint id;
 	string nickname;
@@ -9,6 +9,6 @@ struct PlayerInfo {
 	int hp;
 	int mp;
 	int exp;
-	//float speed;
+	float speed;
 
 }

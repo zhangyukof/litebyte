@@ -26,7 +26,7 @@
 // Purpose: Parse bytes to basetype
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2019-12-16
+// LastModifiedDate: 2019-12-27
 #endregion
 namespace LiteByte.Converters {
 
@@ -122,7 +122,7 @@ namespace LiteByte.Converters {
                 // int  v  = v1 | v2 << n1 = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & Bit3LocationValues[bitLocation - 5]) << (8 - bitLocation)
                 // bitLocation = bitLocation + 3 - 8 = bitLocation - 5
                 int value = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & BitLocationValues[bitLocation - 5]) << 8 - bitLocation;
-                bitLocation = bitLocation - 5;
+                bitLocation -= 5;
                 bitIndex = byteIndex++;
                 return (byte)value;
             }
@@ -140,7 +140,7 @@ namespace LiteByte.Converters {
             } else {
                 // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
                 int value = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & BitLocationValues[bitLocation - 4]) << 8 - bitLocation;
-                bitLocation = bitLocation - 4;
+                bitLocation -= 4;
                 bitIndex = byteIndex++;
                 return (byte)value;
             }
@@ -158,7 +158,7 @@ namespace LiteByte.Converters {
             } else {
                 // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
                 int value = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & BitLocationValues[bitLocation - 3]) << 8 - bitLocation;
-                bitLocation = bitLocation - 3;
+                bitLocation -= 3;
                 bitIndex = byteIndex++;
                 return (byte)value;
             }
@@ -176,7 +176,7 @@ namespace LiteByte.Converters {
             } else {
                 // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
                 int value = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & BitLocationValues[bitLocation - 2]) << 8 - bitLocation;
-                bitLocation = bitLocation - 2;
+                bitLocation -= 2;
                 bitIndex = byteIndex++;
                 return (byte)value;
             }
@@ -188,13 +188,13 @@ namespace LiteByte.Converters {
                 bitLocation = 7;
                 return (byte)(bytes[bitIndex] & 0x7F);
             } else if (bitLocation <= 1) {
-                int value = bytes[bitIndex] >> bitLocation;
+                int value = bytes[bitIndex] >> 1;
                 bitLocation += 7;
                 return (byte)value;
             } else {
                 // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
                 int value = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & BitLocationValues[bitLocation - 1]) << 8 - bitLocation;
-                bitLocation = bitLocation - 1;
+                bitLocation -= 1;
                 bitIndex = byteIndex++;
                 return (byte)value;
             }
@@ -928,7 +928,7 @@ namespace LiteByte.Converters {
         public int Position {
             get { return byteIndex; }
             set {
-                if (value < 0) throw new ArgumentNullException("Position", "Position can't be negtive");
+                if (value < 0) throw new ArgumentNullException("Position", "Position can't be negtive!");
                 byteIndex = value;
                 bitIndex = -1;
                 bitLocation = 8;

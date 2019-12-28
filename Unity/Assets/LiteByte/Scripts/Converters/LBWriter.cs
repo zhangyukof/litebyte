@@ -26,7 +26,7 @@
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2019-12-26
+// LastModifiedDate: 2019-12-27
 #endregion
 namespace LiteByte.Converters {
 
@@ -1043,9 +1043,9 @@ namespace LiteByte.Converters {
         #region API
         /// <summary> 把已写入的数据转换为字节数组 | Convert written data to byte array </summary>
         public byte[] ToBytes() {
-            byte[] array = new byte[byteIndex];
-            Buffer.BlockCopy(buffer, 0, array, 0, byteIndex);
-            return array;
+            byte[] bytes = new byte[byteIndex];
+            Buffer.BlockCopy(buffer, 0, bytes, 0, byteIndex);
+            return bytes;
         }
 
         /// <summary> 擦除已写入的数据 以便重新使用 | Erase written data for reuse </summary>
