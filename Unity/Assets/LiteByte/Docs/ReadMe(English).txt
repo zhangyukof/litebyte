@@ -1,9 +1,9 @@
 ============================== Explain ==============================
 LiteByte
-Version:0.6.11
+Version:0.6.12
 Author:ZhangYu
 CreateDate:2019-05-22
-LastModifiedDate:2019-12-27
+LastModifiedDate:2019-12-31
 GitHub:https://github.com/zhangyukof/litebyte
 
 Intro:

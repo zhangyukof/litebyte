@@ -26,7 +26,7 @@
 // Purpose: Define base type value range
 // Author: ZhangYu
 // CreateDate: 2019-11-14
-// LastModifiedDate: 2019-11-15
+// LastModifiedDate: 2019-12-31
 #endregion
 namespace LiteByte.Common {
 
@@ -291,16 +291,16 @@ namespace LiteByte.Common {
     public struct LBVarUInt32 {
         public const uint MaxValue = uint.MaxValue;
         public const uint MinValue = uint.MinValue;
-        public const float MinByteSize = 1F / 8F + 1F;
-        public const float MaxByteSize = 1F / 8F + 2F;
+        public const float MinByteSize = 2F / 8F + 1F;
+        public const float MaxByteSize = 2F / 8F + 4F;
     }
 
     /// <summary> 3位+1~8字节变长无符号整数(int) | 3-bit + 1~8bytes variable unsigned integer(ulong) </summary>
     public struct LBVarUInt64 {
         public const ulong MaxValue = ulong.MaxValue;
         public const ulong MinValue = ulong.MinValue;
-        public const float MinByteSize = 1F / 8F + 1F;
-        public const float MaxByteSize = 1F / 8F + 2F;
+        public const float MinByteSize = 3F / 8F + 1F;
+        public const float MaxByteSize = 3F / 8F + 8F;
     }
 
     /// <summary> 1~4字节变长有符号整数(int [-1 ~ 1073741822]) | 1~4bytes variable unsigned integer(int [-1 ~ 1073741822])
