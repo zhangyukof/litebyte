@@ -455,7 +455,7 @@ namespace LiteByte.Converters {
             RequireSize(2);
             uint v = *(uint*)&value;
             uint sign = v >> 31;
-            uint exponent = (v << 1 >> 24) - 112; // -112 = (-127 + 15)
+            uint exponent = ((v & 0x7F800000) >> 23) - 112; // -112 = (-127 + 15)
             uint mantissa = (v & 0x7FFFFF) >> 13;
             // 最后一位是四舍五入位 | The last digit is rounded
             if ((v & 0x1000) != 0 && mantissa < 0x3FF) mantissa += 1;
@@ -476,7 +476,7 @@ namespace LiteByte.Converters {
             RequireSize(3);
             uint v = *(uint*)&value;
             uint sign = v >> 31;
-            uint exponent = (v << 1 >> 24) - 64; // -64 = (-127 + 63)
+            uint exponent = ((v & 0x7F800000) >> 23) - 64; // -64 = (-127 + 63)
             uint mantissa = (v & 0x7FFFFF) >> 7;
             // 最后一位是四舍五入位 | The last digit is rounded
             if ((v & 0x40) != 0 && mantissa < 0xFFFF) mantissa += 1;
