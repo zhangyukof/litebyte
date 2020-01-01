@@ -48,9 +48,6 @@ namespace LiteByte.Converters {
         private static readonly int[] BitLocationValues = new int[] { 0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F };
         private static readonly int[] Bit1LocationValues = new int[] { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
         private const int DefaultCapacity = 16; // 默认容量 | Default capacity
-        private static readonly Encoding EncodingUTF8 = Encoding.UTF8;
-        private static readonly Encoding EncodingUnicode = Encoding.Unicode;
-        private static readonly Encoding EncodingASCII = Encoding.ASCII;
         #if BIGENDIAN
         private static readonly bool isLittleEndian /* = false */;
         #else
@@ -648,17 +645,17 @@ namespace LiteByte.Converters {
         #region String
         public void WriteUTF8(string value) {
             if (!WriteValidStringLength(value)) return;
-            int size = EncodingUTF8.GetByteCount(value);
+            int size = Encoding.UTF8.GetByteCount(value);
             WriteVarLength(size);
             RequireSize(size);
-            byteIndex += EncodingUTF8.GetBytes(value, 0, value.Length, buffer, byteIndex);
+            byteIndex += Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, byteIndex);
         }
 
         public void WriteUnicode(string value) {
             if (!WriteValidStringLength(value)) return;
             WriteVarLength(value.Length);
             RequireSize(value.Length * LBUnicode.ByteSize);
-            byteIndex += EncodingUnicode.GetBytes(value, 0, value.Length, buffer, byteIndex);
+            byteIndex += Encoding.Unicode.GetBytes(value, 0, value.Length, buffer, byteIndex);
         }
 
         public void WriteASCII(string value) {
@@ -666,7 +663,7 @@ namespace LiteByte.Converters {
             int size = value.Length;
             WriteVarLength(size);
             RequireSize(size);
-            byteIndex += EncodingASCII.GetBytes(value, 0, size, buffer, byteIndex);
+            byteIndex += Encoding.ASCII.GetBytes(value, 0, size, buffer, byteIndex);
         }
         #endregion
 

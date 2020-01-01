@@ -47,9 +47,6 @@ namespace LiteByte.Converters {
         private int bitLocation = 8;
         private static readonly int[] BitLocationValues = new int[] { 0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F };
         private static readonly int[] Bit1LocationValues = new int[] { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
-        private static readonly Encoding EncodingUTF8 = Encoding.UTF8;
-        private static readonly Encoding EncodingUnicode = Encoding.Unicode;
-        private static readonly Encoding EncodingASCII = Encoding.ASCII;
         #if BIGENDIAN
         private static readonly bool isLittleEndian /* = false */;
         #else
@@ -416,7 +413,7 @@ namespace LiteByte.Converters {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return string.Empty;
-            string value = EncodingUTF8.GetString(bytes, byteIndex, length);
+            string value = Encoding.UTF8.GetString(bytes, byteIndex, length);
             byteIndex += length;
             return value;
         }
@@ -426,7 +423,7 @@ namespace LiteByte.Converters {
             if (length == -1) return null;
             if (length == 0) return string.Empty;
             length = length * 2;
-            string value = EncodingUnicode.GetString(bytes, byteIndex, length);
+            string value = Encoding.Unicode.GetString(bytes, byteIndex, length);
             byteIndex += length;
             return value;
         }
@@ -435,7 +432,7 @@ namespace LiteByte.Converters {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return string.Empty;
-            string value = EncodingASCII.GetString(bytes, byteIndex, length);
+            string value = Encoding.ASCII.GetString(bytes, byteIndex, length);
             byteIndex += length;
             return value;
         }
