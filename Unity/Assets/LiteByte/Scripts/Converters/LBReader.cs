@@ -400,8 +400,7 @@ namespace LiteByte.Converters {
         }
 
         public int ReadVarLength() {
-            int size = bytes[byteIndex] & 3;
-            switch (size) {
+            switch (bytes[byteIndex] & 3) {
                 case 0: return (bytes[byteIndex++] >> 2) - 1;
                 case 1: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6) - 1;
                 case 2: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14) - 1;
