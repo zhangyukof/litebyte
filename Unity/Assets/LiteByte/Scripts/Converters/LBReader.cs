@@ -401,10 +401,12 @@ namespace LiteByte.Converters {
 
         public int ReadVarLength() {
             int size = bytes[byteIndex] & 3;
-            if (size == 0) return (bytes[byteIndex++] >> 2) - 1;
-            if (size == 1) return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6) - 1;
-            if (size == 2) return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14) - 1;
-            return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14 | bytes[byteIndex++] << 22) - 1;
+            switch (size) {
+                case 0: return (bytes[byteIndex++] >> 2) - 1;
+                case 1: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6) - 1;
+                case 2: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14) - 1;
+                default: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14 | bytes[byteIndex++] << 22) - 1;
+            }
         }
         #endregion
 
