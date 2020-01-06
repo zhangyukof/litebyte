@@ -9,6 +9,5 @@ class PlayerInfo {
 	int hp;
 	int mp;
 	int exp;
-	float speed;
 
 }

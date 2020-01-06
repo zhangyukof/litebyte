@@ -1,7 +1,7 @@
 ﻿#region License
 // MIT License
 //
-// Copyright(c) 2019 ZhangYu
+// Copyright(c) 2019-2020 ZhangYu
 // https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +26,7 @@
 // Purpose: Define base type value range
 // Author: ZhangYu
 // CreateDate: 2019-11-14
-// LastModifiedDate: 2019-12-31
+// LastModifiedDate: 2020-01-06
 #endregion
 namespace LiteByte.Common {
 
@@ -38,8 +38,8 @@ namespace LiteByte.Common {
         Int8, Int16, Int24, Int32, Int40, Int48, Int56, Int64,
         UInt8, UInt16, UInt24, UInt32, UInt40, UInt48, UInt56, UInt64,
         Float8, Float16, Float24, Float32, Float64,
-        VarInt16, VarInt32, VarInt64, VarUInt16, VarUInt32, VarUInt64, VarLength,
-        UTF8, Unicode, ASCII
+        VarInt16, VarInt32, VarInt64, VarUInt16, VarUInt32, VarUInt64,
+        ASCII, Unicode, UTF8
     }
     #endregion
 
@@ -302,23 +302,12 @@ namespace LiteByte.Common {
         public const float MinByteSize = 3F / 8F + 1F;
         public const float MaxByteSize = 3F / 8F + 8F;
     }
-
-    /// <summary> 1~4字节变长有符号整数(int [-1 ~ 1073741822]) | 1~4bytes variable unsigned integer(int [-1 ~ 1073741822])
-    /// <para> 为了表达数组和字符串的长度而设计(-1 等于空) | Designed to express array and string length (-1 == null)</para>
-    /// </summary>
-    public struct LBVarLength {
-        public const int MaxValue = 1073741822;
-        public const int MinValue = -1;
-        public const int MinByteSize = 1;
-        public const int MaxByteSize = 4;
-    }
     #endregion
 
     #region String
-    /// <summary> 字符串(UTF8编码) | String(UTF8 Encoding) </summary>
-    public struct LBUTF8 {
-        public const int MinByteSize = 1;
-        public const int MaxByteSize = 4;
+    /// <summary> 字符串(ASCII编码) | String(ASCII Encoding) </summary>
+    public struct LBASCII {
+        public const int ByteSize = 1;
     }
 
     /// <summary> 字符串(Unicode编码) | String(Unicode Encoding) </summary>
@@ -326,9 +315,10 @@ namespace LiteByte.Common {
         public const int ByteSize = 2;
     }
 
-    /// <summary> 字符串(ASCII编码) | String(ASCII Encoding) </summary>
-    public struct LBASCII {
-        public const int ByteSize = 1;
+    /// <summary> 字符串(UTF8编码) | String(UTF8 Encoding) </summary>
+    public struct LBUTF8 {
+        public const int MinByteSize = 1;
+        public const int MaxByteSize = 4;
     }
     #endregion
 }

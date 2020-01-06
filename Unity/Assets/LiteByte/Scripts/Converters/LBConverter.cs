@@ -1,7 +1,7 @@
 ﻿#region License
 // MIT License
 //
-// Copyright(c) 2019 ZhangYu
+// Copyright(c) 2019-2020 ZhangYu
 // https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -200,9 +200,6 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64(obj.GetULong(type.Name));
                     break;
-                case LBBaseType.VarLength:
-                    writer.WriteVarLength(obj.GetInt(type.Name));
-                    break;
                 case LBBaseType.UTF8:
                     writer.WriteUTF8(obj.GetString(type.Name));
                     break;
@@ -356,9 +353,6 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64Array(obj.GetULongArray(type.Name));
                     break;
-                case LBBaseType.VarLength:
-                    writer.WriteVarLengthArray(obj.GetIntArray(type.Name));
-                    break;
                 case LBBaseType.UTF8:
                     writer.WriteUTF8Array(obj.GetStringArray(type.Name));
                     break;
@@ -504,9 +498,6 @@ namespace LiteByte.Converters {
                     break;
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64((ulong)value);
-                    break;
-                case LBBaseType.VarLength:
-                    writer.WriteVarLength((int)value);
                     break;
                 case LBBaseType.UTF8:
                     writer.WriteUTF8((string)value);
@@ -669,9 +660,6 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64Array((ulong[])array);
                     break;
-                case LBBaseType.VarLength:
-                    writer.WriteVarLengthArray((int[])array);
-                    break;
                 case LBBaseType.UTF8:
                     writer.WriteUTF8Array((string[])array);
                     break;
@@ -820,9 +808,6 @@ namespace LiteByte.Converters {
                     break;
                 case LBBaseType.VarUInt64:
                     obj.SetULong(field.Name, reader.ReadVarUInt64());
-                    break;
-                case LBBaseType.VarLength:
-                    obj.SetInt(field.Name, reader.ReadVarLength());
                     break;
                 case LBBaseType.UTF8:
                     obj.SetString(field.Name, reader.ReadUTF8());
@@ -988,9 +973,6 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     obj.SetULongArray(type.Name, reader.ReadVarUInt64Array());
                     break;
-                case LBBaseType.VarLength:
-                    obj.SetIntArray(type.Name, reader.ReadVarLengthArray());
-                    break;
                 case LBBaseType.UTF8:
                     obj.SetStringArray(type.Name, reader.ReadUTF8Array());
                     break;
@@ -1122,9 +1104,6 @@ namespace LiteByte.Converters {
                     break;
                 case LBBaseType.VarUInt64:
                     fieldInfo.SetValue(obj, reader.ReadVarUInt64());
-                    break;
-                case LBBaseType.VarLength:
-                    fieldInfo.SetValue(obj, reader.ReadVarLength());
                     break;
                 case LBBaseType.UTF8:
                     fieldInfo.SetValue(obj, reader.ReadUTF8());
@@ -1276,9 +1255,6 @@ namespace LiteByte.Converters {
                     break;
                 case LBBaseType.VarUInt64:
                     fieldInfo.SetValue(obj, reader.ReadVarUInt64Array());
-                    break;
-                case LBBaseType.VarLength:
-                    fieldInfo.SetValue(obj, reader.ReadVarLengthArray());
                     break;
                 case LBBaseType.UTF8:
                     fieldInfo.SetValue(obj, reader.ReadUTF8Array());

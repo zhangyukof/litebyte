@@ -1,9 +1,9 @@
 ============================== Explain ==============================
 LiteByte
-Version:0.6.12
+Version:0.6.13
 Author:ZhangYu
 CreateDate:2019-05-22
-LastModifiedDate:2019-12-31
+LastModifiedDate:2020-01-06
 GitHub:https://github.com/zhangyukof/litebyte
 
 Intro:
@@ -70,13 +70,10 @@ Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64
 Type:VarUInt16(short) Size:1Bit + 1~2Byte	Value Range::Same as UInt16
 Type:VarUInt32(int)   Size:2Bit + 1~4Byte	Value Range::Same as UInt32
 Type:VarUInt64(int)   Size:3Bit + 1~8Byte	Value Range::Same as UInt64
-
-Type:VarLength(uint)  Size:2Bit + 1~4Byte	Value Range:-1 ~ 1073741821(uint.MaxValue / 2 - 1)
-
 ------------------ String(3 Encodings) ------------------
-Type:UTF8		Size:1~4Byte	MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes
-Type:Unicode	Size:2Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) x 2 Bytes
-Type:ASCII		Size:1Byte	    MaxSize:VarLength(1~4) + (0 ~ 1073741822) Bytes
+Type:UTF8		Size:1~4Byte	MaxSize:VarLength(1~5) + (0 ~ 1073741822) Bytes
+Type:Unicode	Size:2Byte	    MaxSize:VarLength(1~5) + (0 ~ 1073741822) x 2 Bytes
+Type:ASCII		Size:1Byte	    MaxSize:VarLength(1~5) + (0 ~ 1073741822) Bytes
 
 ------------------ Complex Type(2 types) ------------------
 Type:Array		 Expression:{TypeName}[]
@@ -205,8 +202,6 @@ VarInt64 3Bit+1~8Byte long       long          long long     int64
 VarUInt16 1Bit+1~2Byte ushort    ushort  unsigned short      uint16
 VarUInt32 2Bit+1~4Byte uint      uint    unsigned int        uint32
 VarUInt64 3Bit+1~8Byte ulong     ulong   unsigned long long  uint64
-
-VarLength 2Bit+1~4Byte int        int           int           int32
 
 String:
 UTF8    1~4Byte     string      String        string        string

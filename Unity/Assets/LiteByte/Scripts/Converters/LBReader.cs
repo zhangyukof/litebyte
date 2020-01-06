@@ -1,7 +1,7 @@
 ﻿#region License
 // MIT License
 //
-// Copyright(c) 2019 ZhangYu
+// Copyright(c) 2019-2020 ZhangYu
 // https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +26,7 @@
 // Purpose: Parse bytes to basetype
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2019-12-27
+// LastModifiedDate: 2020-01-06
 #endregion
 namespace LiteByte.Converters {
 
@@ -400,21 +400,20 @@ namespace LiteByte.Converters {
         }
 
         public int ReadVarLength() {
-            switch (bytes[byteIndex] & 3) {
-                case 0: return (bytes[byteIndex++] >> 2) - 1;
-                case 1: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6) - 1;
-                case 2: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14) - 1;
-                default: return (bytes[byteIndex++] >> 2 | bytes[byteIndex++] << 6 | bytes[byteIndex++] << 14 | bytes[byteIndex++] << 22) - 1;
-            }
+            if ((bytes[byteIndex] & 0x80) == 0) return bytes[byteIndex++] - 1;
+            if ((bytes[byteIndex + 1] & 0x80) == 0) return (bytes[byteIndex++] & 0x7F | bytes[byteIndex++] << 7) - 1;
+            if ((bytes[byteIndex + 2] & 0x80) == 0) return (bytes[byteIndex++] & 0x7F | (bytes[byteIndex++] & 0x7F) << 7 | bytes[byteIndex++] << 14) - 1;
+            if ((bytes[byteIndex + 3] & 0x80) == 0) return (bytes[byteIndex++] & 0x7F | (bytes[byteIndex++] & 0x7F) << 7 | (bytes[byteIndex++] & 0x7F) << 14 | bytes[byteIndex++] << 21) - 1;
+            return (bytes[byteIndex++] & 0x7F | (bytes[byteIndex++] & 0x7F) << 7 | (bytes[byteIndex++] & 0x7F) << 14 | (bytes[byteIndex++] & 0x7F) << 21 | bytes[byteIndex++] << 28) - 1;
         }
         #endregion
 
         #region String
-        public string ReadUTF8() {
+        public string ReadASCII() {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return string.Empty;
-            string value = Encoding.UTF8.GetString(bytes, byteIndex, length);
+            string value = Encoding.ASCII.GetString(bytes, byteIndex, length);
             byteIndex += length;
             return value;
         }
@@ -429,11 +428,11 @@ namespace LiteByte.Converters {
             return value;
         }
 
-        public string ReadASCII() {
+        public string ReadUTF8() {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return string.Empty;
-            string value = Encoding.ASCII.GetString(bytes, byteIndex, length);
+            string value = Encoding.UTF8.GetString(bytes, byteIndex, length);
             byteIndex += length;
             return value;
         }
@@ -879,13 +878,13 @@ namespace LiteByte.Converters {
         #endregion
 
         #region String Array
-        public string[] ReadUTF8Array() {
+        public string[] ReadASCIIArray() {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return new string[0];
             string[] array = new string[length];
             for (int i = 0; i < length; i++) {
-                array[i] = ReadUTF8();
+                array[i] = ReadASCII();
             }
             return array;
         }
@@ -901,13 +900,13 @@ namespace LiteByte.Converters {
             return array;
         }
 
-        public string[] ReadASCIIArray() {
+        public string[] ReadUTF8Array() {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return new string[0];
             string[] array = new string[length];
             for (int i = 0; i < length; i++) {
-                array[i] = ReadASCII();
+                array[i] = ReadUTF8();
             }
             return array;
         }

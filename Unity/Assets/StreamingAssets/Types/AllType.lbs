@@ -46,7 +46,6 @@ class AllType {
 	VarInt16 vint16;
 	VarInt32 vint32;
 	VarInt64 vint64;
-	VarLength vlength;
 	
 	// VarUInt
 	VarUInt16 vuint16;
@@ -104,7 +103,6 @@ class AllType {
 	VarInt16[] vint16Array;
 	VarInt32[] vint32Array;
 	VarInt64[] vint64Array;
-	VarLength[] vlengthArray;
 	VarUInt16[] vuint16Array;
 	VarUInt32[] vuint32Array;
 	VarUInt64[] vuint64Array;

@@ -558,7 +558,6 @@
             st.vint16 = short.MinValue;
             st.vint32 = int.MinValue;
             st.vint64 = long.MinValue;
-            st.vlength = 6666;
 
             // VarUInt
             st.vuint16 = ushort.MaxValue;
@@ -659,14 +658,12 @@
             short[] varInt16Array = new short[] { 1, -1, short.MinValue, short.MaxValue };
             int[] varInt32Array = new int[] { 1, -1, int.MinValue, int.MaxValue };
             long[] varInt64Array = new long[] { 1, -1, long.MaxValue, long.MinValue };
-            int[] varLengthArray = new int[] { 0, 1, 2, LBVarLength.MinValue, LBVarLength.MaxValue };
             ushort[] varUInt16Array = new ushort[] { 1, 2, ushort.MinValue, ushort.MaxValue };
             uint[] varUInt32Array = new uint[] { 1, 2, uint.MinValue, uint.MaxValue };
             ulong[] varUInt64Array = new ulong[] { 1, 2, ulong.MinValue, ulong.MaxValue };
             st.vint16Array = varInt16Array;
             st.vint32Array = varInt32Array;
             st.vint64Array = varInt64Array;
-            st.vlengthArray = varLengthArray;
             st.vuint16Array = varUInt16Array;
             st.vuint32Array = varUInt32Array;
             st.vuint64Array = varUInt64Array;
@@ -719,7 +716,6 @@
             lb.SetShort("vint16", st.vint16);
             lb.SetInt("vint32", st.vint32);
             lb.SetLong("vint64", st.vint64);
-            lb.SetInt("vlength", st.vlength);
 
             // VarUInt
             lb.SetUShort("vuint16", st.vuint16);
@@ -778,7 +774,6 @@
             lb.SetShortArray("vint16Array", st.vint16Array);
             lb.SetIntArray("vint32Array", st.vint32Array);
             lb.SetLongArray("vint64Array", st.vint64Array);
-            lb.SetIntArray("vlengthArray", st.vlengthArray);
             lb.SetUShortArray("vuint16Array", st.vuint16Array);
             lb.SetUIntArray("vuint32Array", st.vuint32Array);
             lb.SetULongArray("vuint64Array", st.vuint64Array);

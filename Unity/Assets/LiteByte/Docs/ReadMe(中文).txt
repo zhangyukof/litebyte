@@ -1,9 +1,9 @@
 ==============================说明==============================
 LiteByte
-版本:0.6.12
+版本:0.6.13
 作者:ZhangYu
 创建日期:2019-05-22
-修改日期:2019-12-31
+修改日期:2020-01-06
 GitHub:https://github.com/zhangyukof/litebyte
 
 简介:
@@ -70,13 +70,10 @@ LiteByte是一种轻量级的二进制数据交换格式。
 类型:VarUInt16(short)	长度:1位 + 1~2字节	值范围:同UInt16
 类型:VarUInt32(int)		长度:2位 + 1~4字节	值范围:同UInt32
 类型:VarUInt64(int)		长度:3位 + 1~8字节	值范围:同UInt64
-
-类型:VarLength(int)		长度:2位 + 1~4字节	值范围:-1 ~ 1073741821(int.MaxValue / 2 - 1)
-
 ------------------ 字符串类型 1种(3种编码) ------------------
-类型:UTF8		字符长度:1~4字节	总字节长度:(1~4) + (0 ~ 1073741822)
-类型:Unicode	    字符长度:2字节	总字节长度:(1~4) + (0 ~ 1073741822) x 2
-类型:ASCII		字符长度:1字节	总字节长度:(1~4) + (0 ~ 1073741822)
+类型:UTF8		字符长度:1~4字节	总字节长度:(1~5) + (0 ~ 1073741822)
+类型:Unicode	    字符长度:2字节	总字节长度:(1~5) + (0 ~ 1073741822) x 2
+类型:ASCII		字符长度:1字节	总字节长度:(1~5) + (0 ~ 1073741822)
 
 ------------------ 复合类型 2种 ------------------
 支持2种:
@@ -204,8 +201,6 @@ VarInt64 3位+1~8字节 long       long          long long     int64
 VarUInt16 1位+1~2字节 ushort    ushort  unsigned short      uint16
 VarUInt32 2位+1~4字节 uint      uint    unsigned int        uint32
 VarUInt64 3位+1~8字节 ulong     ulong   unsigned long long  uint64
-
-VarLength 2位+1~4字节 int        int           int           int32
 
 字符串型:
 UTF8    1~4字节     string      String        string        string

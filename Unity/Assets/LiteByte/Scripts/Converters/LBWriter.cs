@@ -1,7 +1,7 @@
 ﻿#region License
 // MIT License
 //
-// Copyright(c) 2019 ZhangYu
+// Copyright(c) 2019-2020 ZhangYu
 // https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +26,7 @@
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2019-12-27
+// LastModifiedDate: 2020-01-06
 #endregion
 namespace LiteByte.Converters {
 
@@ -622,23 +622,15 @@ namespace LiteByte.Converters {
             }
         }
 
+        /// <summary> 只用来表示长度(-1 代表 null) | Just for length(-1 means null) </summary>
         public void WriteVarLength(int value) {
-            // 检查数值范围 | Check value range
-            if (value < LBVarLength.MinValue || value > LBVarLength.MaxValue) {
-                string error = "value:" + value.ToString() + " out of range! VarLength valid range:[-1 ~ 1073741822]";
-                throw new ArgumentOutOfRangeException("value", error);
-            }
-            // 根据数值范围 写入字节(1 ~ 4字节) | Write bytes (1 ~ 4 bytes) according to numeric range
             value = value + 1;
-            if (value < 64) {
-                WriteUInt8((byte)(value << 2));
-            } else if (value < 16384) {
-                WriteUInt16((ushort)(1 | value << 2));
-            } else if (value < 4194304) {
-                WriteUInt24((uint)(2 | value << 2));
-            } else {
-                WriteUInt32((uint)(3 | value << 2));
+            // 7位有效位+1位后续位 每个字节的最高位代表是否有下一个字节 [1xxxxxxx] | 7Bits numbers + 1Bit subsequent. The highest bit means has next byte or not.
+            while (value >> 7 != 0) {
+                buffer[byteIndex++] = (byte)(value & 0x7F | 0x80);
+                value = value >> 7;
             }
+            buffer[byteIndex++] = (byte)value;
         }
         #endregion
 
@@ -929,13 +921,6 @@ namespace LiteByte.Converters {
             }
         }
 
-        public void WriteVarLengthArray(int[] array) {
-            if (!WriteValidArrayLength(array, LBVarLength.MinByteSize)) return;
-            for (int i = 0; i < array.Length; i++) {
-                WriteVarLength(array[i]);
-            }
-        }
-
         public void WriteVarUInt16Array(ushort[] array) {
             if (!WriteValidArrayLength(array, LBVarUInt16.MinByteSize)) return;
             for (int i = 0; i < array.Length; i++) {
@@ -959,24 +944,24 @@ namespace LiteByte.Converters {
         #endregion
 
         #region String Array
-        public void WriteUTF8Array(string[] array) {
-            if (!WriteValidArrayLength(array, LBVarLength.MinByteSize)) return;
+        public void WriteASCIIArray(string[] array) {
+            if (!WriteValidArrayLength(array, 1)) return;
             for (int i = 0; i < array.Length; i++) {
-                WriteUTF8(array[i]);
+                WriteASCII(array[i]);
             }
         }
 
         public void WriteUnicodeArray(string[] array) {
-            if (!WriteValidArrayLength(array, LBVarLength.MinByteSize)) return;
+            if (!WriteValidArrayLength(array, 2)) return;
             for (int i = 0; i < array.Length; i++) {
                 WriteUnicode(array[i]);
             }
         }
 
-        public void WriteASCIIArray(string[] array) {
-            if (!WriteValidArrayLength(array, LBVarLength.MinByteSize)) return;
+        public void WriteUTF8Array(string[] array) {
+            if (!WriteValidArrayLength(array, 2)) return;
             for (int i = 0; i < array.Length; i++) {
-                WriteASCII(array[i]);
+                WriteUTF8(array[i]);
             }
         }
         #endregion

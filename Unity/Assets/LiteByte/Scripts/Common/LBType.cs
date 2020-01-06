@@ -1,7 +1,7 @@
 ﻿#region License
 // MIT License
 //
-// Copyright(c) 2019 ZhangYu
+// Copyright(c) 2019-2020 ZhangYu
 // https://github.com/zhangyukof/litebyte
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
