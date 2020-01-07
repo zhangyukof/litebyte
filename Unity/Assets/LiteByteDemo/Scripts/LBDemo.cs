@@ -279,14 +279,14 @@
         #endregion
 
         #region String Type Test
-        public void StringUTF8TypeTest() {
-            ST_UTF8Type st = new ST_UTF8Type();
-            st.str = "UTF8";
+        public void StringASCIITypeTest() {
+            ST_ASCIIType st = new ST_ASCIIType();
+            st.str = "ASCII";
 
             LBObject lb = new LBObject();
             lb.SetString("str", st.str);
 
-            ClassTest("UTF8Type", st, lb);
+            ClassTest("ASCIIType", st, lb);
         }
 
         public void StringUnicodeTypeTest() {
@@ -299,14 +299,24 @@
             ClassTest("UnicodeType", st, lb);
         }
 
-        public void StringASCIITypeTest() {
-            ST_ASCIIType st = new ST_ASCIIType();
-            st.str = "ASCII";
+        public void StringUTF8TypeTest() {
+            ST_UTF8Type st = new ST_UTF8Type();
+            st.str = "UTF8";
 
             LBObject lb = new LBObject();
             lb.SetString("str", st.str);
 
-            ClassTest("ASCIIType", st, lb);
+            ClassTest("UTF8Type", st, lb);
+        }
+
+        public void StringVarUTFTest() {
+            ST_VarUTFType st = new ST_VarUTFType();
+            st.str = "ABCDEFGH一二三四五六七八";
+
+            LBObject lb = new LBObject();
+            lb.SetString("str", st.str);
+
+            ClassTest("VarUTFType", st, lb);
         }
         #endregion
 

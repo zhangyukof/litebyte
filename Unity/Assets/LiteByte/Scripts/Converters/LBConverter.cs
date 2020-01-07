@@ -26,7 +26,7 @@
 // Purpose: Convert object to bytes and bytes to object
 // Author: ZhangYu
 // CreateDate: 2019-10-10
-// LastModifiedData: 2019-12-24
+// LastModifiedData: 2020-01-07
 #endregion
 namespace LiteByte.Converters {
 
@@ -200,14 +200,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64(obj.GetULong(type.Name));
                     break;
-                case LBBaseType.UTF8:
-                    writer.WriteUTF8(obj.GetString(type.Name));
+                case LBBaseType.ASCII:
+                    writer.WriteASCII(obj.GetString(type.Name));
                     break;
                 case LBBaseType.Unicode:
                     writer.WriteUnicode(obj.GetString(type.Name));
                     break;
-                case LBBaseType.ASCII:
-                    writer.WriteASCII(obj.GetString(type.Name));
+                case LBBaseType.UTF8:
+                    writer.WriteUTF8(obj.GetString(type.Name));
+                    break;
+                case LBBaseType.VarUTF:
+                    writer.WriteVarUTF(obj.GetString(type.Name));
                     break;
                 default:
                     break;
@@ -353,14 +356,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64Array(obj.GetULongArray(type.Name));
                     break;
-                case LBBaseType.UTF8:
-                    writer.WriteUTF8Array(obj.GetStringArray(type.Name));
+                case LBBaseType.ASCII:
+                    writer.WriteASCIIArray(obj.GetStringArray(type.Name));
                     break;
                 case LBBaseType.Unicode:
                     writer.WriteUnicodeArray(obj.GetStringArray(type.Name));
                     break;
-                case LBBaseType.ASCII:
-                    writer.WriteASCIIArray(obj.GetStringArray(type.Name));
+                case LBBaseType.UTF8:
+                    writer.WriteUTF8Array(obj.GetStringArray(type.Name));
+                    break;
+                case LBBaseType.VarUTF:
+                    writer.WriteVarUTFArray(obj.GetStringArray(type.Name));
                     break;
                 default:
                     break;
@@ -499,14 +505,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64((ulong)value);
                     break;
-                case LBBaseType.UTF8:
-                    writer.WriteUTF8((string)value);
+                case LBBaseType.ASCII:
+                    writer.WriteASCII((string)value);
                     break;
                 case LBBaseType.Unicode:
                     writer.WriteUnicode((string)value);
                     break;
-                case LBBaseType.ASCII:
-                    writer.WriteASCII((string)value);
+                case LBBaseType.UTF8:
+                    writer.WriteUTF8((string)value);
+                    break;
+                case LBBaseType.VarUTF:
+                    writer.WriteVarUTF((string)value);
                     break;
                 default:
                     break;
@@ -660,14 +669,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     writer.WriteVarUInt64Array((ulong[])array);
                     break;
-                case LBBaseType.UTF8:
-                    writer.WriteUTF8Array((string[])array);
+                case LBBaseType.ASCII:
+                    writer.WriteASCIIArray((string[])array);
                     break;
                 case LBBaseType.Unicode:
                     writer.WriteUnicodeArray((string[])array);
                     break;
-                case LBBaseType.ASCII:
-                    writer.WriteASCIIArray((string[])array);
+                case LBBaseType.UTF8:
+                    writer.WriteUTF8Array((string[])array);
+                    break;
+                case LBBaseType.VarUTF:
+                    writer.WriteVarUTFArray((string[])array);
                     break;
                 default:
                     break;
@@ -809,14 +821,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     obj.SetULong(field.Name, reader.ReadVarUInt64());
                     break;
-                case LBBaseType.UTF8:
-                    obj.SetString(field.Name, reader.ReadUTF8());
+                case LBBaseType.ASCII:
+                    obj.SetString(field.Name, reader.ReadASCII());
                     break;
                 case LBBaseType.Unicode:
                     obj.SetString(field.Name, reader.ReadUnicode());
                     break;
-                case LBBaseType.ASCII:
-                    obj.SetString(field.Name, reader.ReadASCII());
+                case LBBaseType.UTF8:
+                    obj.SetString(field.Name, reader.ReadUTF8());
+                    break;
+                case LBBaseType.VarUTF:
+                    obj.SetString(field.Name, reader.ReadVarUTF());
                     break;
                 default:
                     break;
@@ -973,14 +988,17 @@ namespace LiteByte.Converters {
                 case LBBaseType.VarUInt64:
                     obj.SetULongArray(type.Name, reader.ReadVarUInt64Array());
                     break;
-                case LBBaseType.UTF8:
-                    obj.SetStringArray(type.Name, reader.ReadUTF8Array());
+                case LBBaseType.ASCII:
+                    obj.SetStringArray(type.Name, reader.ReadASCIIArray());
                     break;
                 case LBBaseType.Unicode:
                     obj.SetStringArray(type.Name, reader.ReadUnicodeArray());
                     break;
-                case LBBaseType.ASCII:
-                    obj.SetStringArray(type.Name, reader.ReadASCIIArray());
+                case LBBaseType.UTF8:
+                    obj.SetStringArray(type.Name, reader.ReadUTF8Array());
+                    break;
+                case LBBaseType.VarUTF:
+                    obj.SetStringArray(type.Name, reader.ReadVarUTFArray());
                     break;
                 default:
                     break;

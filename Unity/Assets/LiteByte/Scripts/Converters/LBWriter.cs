@@ -26,7 +26,7 @@
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2020-01-06
+// LastModifiedDate: 2020-01-07
 #endregion
 namespace LiteByte.Converters {
 
@@ -635,27 +635,68 @@ namespace LiteByte.Converters {
         #endregion
 
         #region String
-        public void WriteUTF8(string value) {
+        public void WriteASCII(string value) {
             if (!WriteValidStringLength(value)) return;
-            int size = Encoding.UTF8.GetByteCount(value);
-            WriteVarLength(size);
-            RequireSize(size);
-            byteIndex += Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, byteIndex);
+            WriteVarLength(value.Length);
+            RequireSize(value.Length);
+            byteIndex += Encoding.ASCII.GetBytes(value, 0, value.Length, buffer, byteIndex);
         }
 
         public void WriteUnicode(string value) {
             if (!WriteValidStringLength(value)) return;
             WriteVarLength(value.Length);
-            RequireSize(value.Length * LBUnicode.ByteSize);
+            RequireSize(value.Length * 2);
             byteIndex += Encoding.Unicode.GetBytes(value, 0, value.Length, buffer, byteIndex);
         }
 
-        public void WriteASCII(string value) {
+        public void WriteUTF8(string value) {
             if (!WriteValidStringLength(value)) return;
-            int size = value.Length;
-            WriteVarLength(size);
-            RequireSize(size);
-            byteIndex += Encoding.ASCII.GetBytes(value, 0, size, buffer, byteIndex);
+            int byteCount = Encoding.UTF8.GetByteCount(value);
+            WriteVarLength(byteCount);
+            RequireSize(byteCount);
+            byteIndex += Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, byteIndex);
+        }
+
+        public void WriteVarUTF(string value) {
+            if (!WriteValidStringLength(value)) return;
+            // 获取字符数和字节数 | Get char count and byte count
+            int charCount = 0;
+            int byteCount = 0;
+            for (int i = 0; i < value.Length;) {
+                int charCode = 0;
+                if (char.IsHighSurrogate(value[i])) {
+                    charCode = char.ConvertToUtf32(value[i], value[i + 1]);
+                    i += 2;
+                } else {
+                    charCode = value[i];
+                    i += 1;
+                }
+                if (charCode < 256) {
+                    byteCount += 1;
+                } else if (charCode < 65536) {
+                    byteCount += 2;
+                } else if (charCode < 16777216) {
+                    byteCount += 3;
+                } else {
+                    byteCount += 4;
+                }
+                charCount += 1;
+            }
+
+            // 写入Unicode码点 | Write Unicode code point.
+            WriteVarLength(charCount);
+            RequireSize(byteCount + (int)Math.Ceiling(charCount * 0.25f));
+            for (int i = 0; i < value.Length;) {
+                int charCode = 0;
+                if (char.IsHighSurrogate(value[i])) {
+                    charCode = char.ConvertToUtf32(value[i], value[i + 1]);
+                    i += 2;
+                } else {
+                    charCode = value[i];
+                    i += 1;
+                }
+                WriteVarUInt32((uint)charCode);
+            }
         }
         #endregion
 
@@ -962,6 +1003,13 @@ namespace LiteByte.Converters {
             if (!WriteValidArrayLength(array, 2)) return;
             for (int i = 0; i < array.Length; i++) {
                 WriteUTF8(array[i]);
+            }
+        }
+
+        public void WriteVarUTFArray(string[] array) {
+            if (!WriteValidArrayLength(array, 2)) return;
+            for (int i = 0; i < array.Length; i++) {
+                WriteVarUTF(array[i]);
             }
         }
         #endregion

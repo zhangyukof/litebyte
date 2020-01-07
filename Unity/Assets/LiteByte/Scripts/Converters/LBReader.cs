@@ -26,7 +26,7 @@
 // Purpose: Parse bytes to basetype
 // Author: ZhangYu
 // CreateDate: 2019-08-13
-// LastModifiedDate: 2020-01-06
+// LastModifiedDate: 2020-01-07
 #endregion
 namespace LiteByte.Converters {
 
@@ -410,31 +410,47 @@ namespace LiteByte.Converters {
 
         #region String
         public string ReadASCII() {
-            int length = ReadVarLength();
-            if (length == -1) return null;
-            if (length == 0) return string.Empty;
-            string value = Encoding.ASCII.GetString(bytes, byteIndex, length);
-            byteIndex += length;
+            int charCount = ReadVarLength();
+            if (charCount == -1) return null;
+            if (charCount == 0) return string.Empty;
+            string value = Encoding.ASCII.GetString(bytes, byteIndex, charCount);
+            byteIndex += charCount;
             return value;
         }
 
         public string ReadUnicode() {
-            int length = ReadVarLength();
-            if (length == -1) return null;
-            if (length == 0) return string.Empty;
-            length = length * 2;
-            string value = Encoding.Unicode.GetString(bytes, byteIndex, length);
-            byteIndex += length;
+            int charCount = ReadVarLength();
+            if (charCount == -1) return null;
+            if (charCount == 0) return string.Empty;
+            charCount = charCount * 2;
+            string value = Encoding.Unicode.GetString(bytes, byteIndex, charCount);
+            byteIndex += charCount;
             return value;
         }
 
         public string ReadUTF8() {
-            int length = ReadVarLength();
-            if (length == -1) return null;
-            if (length == 0) return string.Empty;
-            string value = Encoding.UTF8.GetString(bytes, byteIndex, length);
-            byteIndex += length;
+            int byteCount = ReadVarLength();
+            if (byteCount == -1) return null;
+            if (byteCount == 0) return string.Empty;
+            string value = Encoding.UTF8.GetString(bytes, byteIndex, byteCount);
+            byteIndex += byteCount;
             return value;
+        }
+
+        public string ReadVarUTF() {
+            int charCount = ReadVarLength();
+            if (charCount == -1) return null;
+            if (charCount == 0) return string.Empty;
+            StringBuilder sb = new StringBuilder(charCount);
+            for (int i = 0; i < charCount; i++) {
+                uint charCode = ReadVarUInt32();
+                if (charCode < 65536) {
+                    sb.Append((char)charCode);
+                } else {
+                    sb.Append(char.ConvertFromUtf32((int)charCode));
+                }
+            }
+            return sb.ToString();
         }
         #endregion
 
@@ -907,6 +923,17 @@ namespace LiteByte.Converters {
             string[] array = new string[length];
             for (int i = 0; i < length; i++) {
                 array[i] = ReadUTF8();
+            }
+            return array;
+        }
+
+        public string[] ReadVarUTFArray() {
+            int length = ReadVarLength();
+            if (length == -1) return null;
+            if (length == 0) return new string[0];
+            string[] array = new string[length];
+            for (int i = 0; i < length; i++) {
+                array[i] = ReadVarUTF();
             }
             return array;
         }

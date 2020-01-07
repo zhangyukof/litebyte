@@ -2,6 +2,7 @@
 class PlayerInfo {
 
 	uint id;
+	// 字符串类型 VarUTF8 对非ASCII字符支持会更好 体积会更小 | String type [VarUTF] is smaller if not ascii character
 	string nickname;
 	byte gender;
 	bool isVip;

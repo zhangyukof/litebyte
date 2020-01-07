@@ -26,7 +26,7 @@
 // Purpose: Define base type value range
 // Author: ZhangYu
 // CreateDate: 2019-11-14
-// LastModifiedDate: 2020-01-06
+// LastModifiedDate: 2020-01-07
 #endregion
 namespace LiteByte.Common {
 
@@ -39,7 +39,7 @@ namespace LiteByte.Common {
         UInt8, UInt16, UInt24, UInt32, UInt40, UInt48, UInt56, UInt64,
         Float8, Float16, Float24, Float32, Float64,
         VarInt16, VarInt32, VarInt64, VarUInt16, VarUInt32, VarUInt64,
-        ASCII, Unicode, UTF8
+        ASCII, Unicode, UTF8, VarUTF
     }
     #endregion
 

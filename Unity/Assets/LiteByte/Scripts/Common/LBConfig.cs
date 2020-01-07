@@ -26,7 +26,7 @@
 // Purpose: Custom type configuration
 // Author: ZhangYu
 // CreateDate: 2019-10-10
-// LastModifiedDate: 2019-11-13
+// LastModifiedDate: 2020-01-07
 #endregion
 namespace LiteByte.Common {
 
@@ -50,7 +50,7 @@ namespace LiteByte.Common {
             {"Float8", LBBaseType.Float8}, {"Float16", LBBaseType.Float16}, {"Float24", LBBaseType.Float24}, {"Float32", LBBaseType.Float32}, {"Float64", LBBaseType.Float64},
             {"VarInt16", LBBaseType.VarInt16}, {"VarInt32", LBBaseType.VarInt32}, {"VarInt64", LBBaseType.VarInt64},
             {"VarUInt16", LBBaseType.VarUInt16}, {"VarUInt32", LBBaseType.VarUInt32}, {"VarUInt64", LBBaseType.VarUInt64},
-            {"UTF8", LBBaseType.UTF8}, {"Unicode", LBBaseType.Unicode}, {"ASCII", LBBaseType.ASCII},
+            {"UTF8", LBBaseType.UTF8}, {"Unicode", LBBaseType.Unicode}, {"ASCII", LBBaseType.ASCII}, {"VarUTF", LBBaseType.VarUTF},
         };
 
         /// <summary> 基本类型简称字典 | base type short name dictionary </summary>

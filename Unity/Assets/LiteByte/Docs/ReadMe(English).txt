@@ -1,9 +1,9 @@
 ============================== Explain ==============================
 LiteByte
-Version:0.6.13
+Version:0.6.14
 Author:ZhangYu
 CreateDate:2019-05-22
-LastModifiedDate:2020-01-06
+LastModifiedDate:2020-01-07
 GitHub:https://github.com/zhangyukof/litebyte
 
 Intro:
@@ -62,7 +62,7 @@ Type:Float24(single)  Size:3  Significant Digits:5Bit   Value Range:¡À1.8447E +1
 Type:Float32(single)  Size:4  Significant Digits:7Bit   Value Range:¡À3.402823E +38
 Type:Float64(double)  Size:8  Significant Digits:15Bit  Value Range:¡À1.7976931348623157E +308
 
------------------- Variable Integer(7 types) ------------------
+------------------ Variable Integer(6 types) ------------------
 Type:VarInt16(short)  Size:1Bit + 1~2Byte  Value Range:Same as Int16
 Type:VarInt32(int)    Size:2Bit + 1~4Byte  Value Range:Same as Int32
 Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64
@@ -70,10 +70,11 @@ Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64
 Type:VarUInt16(short) Size:1Bit + 1~2Byte	Value Range::Same as UInt16
 Type:VarUInt32(int)   Size:2Bit + 1~4Byte	Value Range::Same as UInt32
 Type:VarUInt64(int)   Size:3Bit + 1~8Byte	Value Range::Same as UInt64
------------------- String(3 Encodings) ------------------
-Type:UTF8		Size:1~4Byte	MaxSize:VarLength(1~5) + (0 ~ 1073741822) Bytes
-Type:Unicode	Size:2Byte	    MaxSize:VarLength(1~5) + (0 ~ 1073741822) x 2 Bytes
-Type:ASCII		Size:1Byte	    MaxSize:VarLength(1~5) + (0 ~ 1073741822) Bytes
+------------------ String(4 Encodings) ------------------
+Type:UTF8		Size:1~4Byte	MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
+Type:Unicode	Size:2Byte	    MaxSize:(1~5) + (0 ~ int.MaxValue - 1) x 2 Bytes
+Type:ASCII		Size:1Byte	    MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
+Type:VarUTF		Size:1~5Byte	MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
 
 ------------------ Complex Type(2 types) ------------------
 Type:Array		 Expression:{TypeName}[]

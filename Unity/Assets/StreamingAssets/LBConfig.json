@@ -15,7 +15,7 @@
 	],
 	"typeFileRoot": "{StreamingAssets}/Types/",
     "typeFileNames": [
-		"CustomArray.lbs",
+        "CustomArray.lbs",
         "BoolType.lbs",
         "Int8Type.lbs",
         "Int16Type.lbs",
@@ -36,6 +36,7 @@
         "UTF8Type.lbs",
         "UnicodeType.lbs",
         "ASCIIType.lbs",
+        "VarUTFType.lbs",
         "Vector3.lbs",
         "Color.lbs",
         "Color32.lbs",
@@ -44,7 +45,7 @@
         "AllType.lbs",
         "NestedType.lbs",
         "PlayerInfo.lbs",
-		"ClassType.lbs",
-		"ClassType2.lbs"
+        "ClassType.lbs",
+        "ClassType2.lbs"
     ]
 }
