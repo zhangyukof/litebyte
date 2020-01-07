@@ -1,6 +1,0 @@
-/// <summary> 自定义结构数组测试 | Custom type array test </summary>
-struct CustomArray {
-
-	Vector3[] positions;
-	
-}

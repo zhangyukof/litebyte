@@ -1,6 +1,0 @@
-// Int Type
-struct UInt32Type {
-
-	UInt32 uint32;
-
-}

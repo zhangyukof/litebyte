@@ -1,7 +1,0 @@
-/// <summary> Vector3 </summary>
-class ClassType2 {
-
-	int x;
-	int y;
-
-}

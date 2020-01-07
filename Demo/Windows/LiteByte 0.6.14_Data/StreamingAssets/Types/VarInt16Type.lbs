@@ -1,0 +1,6 @@
+// VarInt Type
+struct VarInt16Type {
+
+	VarInt16 vint16;
+
+}

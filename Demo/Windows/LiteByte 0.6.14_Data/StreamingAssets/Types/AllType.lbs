@@ -1,0 +1,125 @@
+/*
+ * 注释1 | Comments 1
+ */
+class AllType {
+
+    // 注释2 | Comments 2
+    /// <summary> 注释3  | Comments 3 </summary>
+	
+	// Bit
+	Bit1 bit1; // 注释4  | Comments 4
+	Bit2 bit2;
+	Bit3 bit3;
+	Bit4 bit4;
+	Bit5 bit5;
+	Bit6 bit6;
+	Bit7 bit7;
+	
+	// Int
+	Int8 int8;
+	Int16 int16;
+	Int24 int24;
+	Int32 int32;
+	Int40 int40;
+	Int48 int48;
+	Int56 int56;
+	Int64 int64;
+	
+	// UInt
+	UInt8 uint8;
+	UInt16 uint16;
+	UInt24 uint24;
+	UInt32 uint32;
+	UInt40 uint40;
+	UInt48 uint48;
+	UInt56 uint56;
+	UInt64 uint64;
+	
+	// Float
+    Float8 float8;
+    Float16 float16;
+    Float24 float24;
+    Float32 float32;
+	Float64 float64;
+	
+	// VarInt
+	VarInt16 vint16;
+	VarInt32 vint32;
+	VarInt64 vint64;
+	
+	// VarUInt
+	VarUInt16 vuint16;
+	VarUInt32 vuint32;
+	VarUInt64 vuint64;
+	
+	// string
+    UTF8 utf8;
+    Unicode unicode;
+    ASCII ascii;
+	
+	// CustomType
+    Vector3 position;
+
+    // NestedType
+    PlayerInfo playerInfo;
+	
+	// BitArray
+	Bit1[] bit1Array;
+	Bit2[] bit2Array;
+	Bit3[] bit3Array;
+	Bit4[] bit4Array;
+	Bit5[] bit5Array;
+	Bit6[] bit6Array;
+	Bit7[] bit7Array;
+	
+	// IntArray
+	Int8[]  int8Array;
+	Int16[] int16Array;
+	Int24[] int24Array;
+	Int64[] int64Array;
+	Int32[] int32Array;
+	Int40[] int40Array;
+	Int48[] int48Array;
+	Int56[] int56Array;
+	
+	// UIntArray
+	UInt8[]  uint8Array;
+	UInt16[] uint16Array;
+	UInt24[] uint24Array;
+	UInt32[] uint32Array;
+	UInt40[] uint40Array;
+	UInt48[] uint48Array;
+	UInt56[] uint56Array;
+	UInt64[] uint64Array;
+	
+	// UIntArray
+	Float8[]  float8Array;
+	Float16[] float16Array;
+	Float24[] float24Array;
+	Float32[] float32Array;
+	Float64[] float64Array;
+	
+	// VarIntArray
+	VarInt16[] vint16Array;
+	VarInt32[] vint32Array;
+	VarInt64[] vint64Array;
+	VarUInt16[] vuint16Array;
+	VarUInt32[] vuint32Array;
+	VarUInt64[] vuint64Array;
+	
+	// StringArray
+    UTF8[] utf8Array;
+    Unicode[] unicodeArray;
+    ASCII[] asciiArray;
+	
+	// CustomType
+    Vector3[] positions;
+
+    // NestedType
+    PlayerInfo[] playerInfos;
+	
+	/**/
+	
+    //Dictionary<string, string> dict; 
+
+}

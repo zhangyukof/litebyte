@@ -1,8 +1,0 @@
-/// <summary> 嵌套类型测试 | Nested type test </summary>
-struct NestedType {
-
-	PlayerInfo playerInfo;
-	Vector3 position;
-	Color color;
-
-}

@@ -1,0 +1,13 @@
+// BoolType
+struct BoolType {
+
+	Bit1 b1;
+	Bit1 b2;
+	Bit1 b3;
+	Bit1 b4;
+	Bit1 b5;
+	Bit1 b6;
+	Bit1 b7;
+	Bit1 b8;
+
+}

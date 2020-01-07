@@ -1,6 +1,0 @@
-// Float Type
-struct Float32Type {
-
-	Float32 float32;
-
-}

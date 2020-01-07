@@ -1,6 +1,0 @@
-// String Type
-struct UnicodeType {
-
-	Unicode str;
-
-}
