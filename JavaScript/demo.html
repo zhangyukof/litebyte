@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/lb_import.js"></script>
+        <script type="text/javascript">
+            let writer = new LBWriter();
+            let reader = new LBReader();
+
+            // ========== Int ==========
+            writer.writeInt8(-8);
+            writer.writeInt8(LBInt8.MAX_VALUE);
+            writer.writeInt8(LBInt8.MIN_VALUE);
+
+            writer.writeInt16(-16);
+            writer.writeInt16(LBInt16.MAX_VALUE);
+            writer.writeInt16(LBInt16.MIN_VALUE);
+
+            writer.writeInt24(-24);
+            writer.writeInt24(LBInt24.MAX_VALUE);
+            writer.writeInt24(LBInt24.MIN_VALUE);
+
+            writer.writeInt32(-32);
+            writer.writeInt32(LBInt32.MAX_VALUE);
+            writer.writeInt32(LBInt32.MIN_VALUE);
+
+            // ========== UInt ==========
+            writer.writeUInt8(8);
+            writer.writeUInt8(LBUInt8.MAX_VALUE);
+            writer.writeUInt8(LBUInt8.MIN_VALUE);
+
+            writer.writeUInt16(16);
+            writer.writeUInt16(LBUInt16.MAX_VALUE);
+            writer.writeUInt16(LBUInt16.MIN_VALUE);
+
+            writer.writeUInt24(24);
+            writer.writeUInt24(LBUInt24.MAX_VALUE);
+            writer.writeUInt24(LBUInt24.MIN_VALUE);
+
+            writer.writeUInt32(32);
+            writer.writeUInt32(LBUInt32.MAX_VALUE);
+            writer.writeUInt32(LBUInt32.MIN_VALUE);
+
+            for (let i = 0; i <= 10; i++) {
+                writer.writeFloat8(i / 255);
+            }
+
+            // ========== Float ==========
+            writer.writeFloat16(0.1234567);
+            writer.writeFloat16(LBFloat16.MAX_VALUE);
+            writer.writeFloat16(LBFloat16.MIN_VALUE);
+
+            writer.writeFloat24(0.1234567);
+            writer.writeFloat24(LBFloat24.MAX_VALUE);
+            writer.writeFloat24(LBFloat24.MIN_VALUE);
+
+            writer.writeFloat32(0.1234567);
+            writer.writeFloat32(LBFloat32.MAX_VALUE);
+            writer.writeFloat32(LBFloat32.MIN_VALUE);
+
+            writer.writeFloat64(123456789.123456789);
+            writer.writeFloat64(LBFloat64.MAX_VALUE);
+            writer.writeFloat64(LBFloat64.MIN_VALUE);
+
+            // ========== VarInt ==========
+            writer.writeVarInt16(-16);
+            writer.writeVarInt16(LBVarInt16.MAX_VALUE);
+            writer.writeVarInt16(LBVarInt16.MIN_VALUE);
+
+            writer.writeVarInt32(-32);
+            writer.writeVarInt32(LBVarInt32.MAX_VALUE);
+            writer.writeVarInt32(LBVarInt32.MIN_VALUE);
+
+            //writer.writeVarInt64(-64);
+            //writer.writeVarInt64(LBVarInt64.MAX_VALUE);
+            //writer.writeVarInt64(LBVarInt64.MIN_VALUE);
+
+            // ========== VarUInt ==========
+            writer.writeVarUInt16(16);
+            writer.writeVarUInt16(LBVarUInt16.MAX_VALUE);
+            writer.writeVarUInt16(LBVarUInt16.MIN_VALUE);
+
+            writer.writeVarUInt32(32);
+            writer.writeVarUInt32(LBVarUInt32.MAX_VALUE);
+            writer.writeVarUInt32(LBVarUInt32.MIN_VALUE);
+
+            //writer.writeVarUInt64(64);
+            //writer.writeVarUInt64(LBVarUInt64.MAX_VALUE);
+            //writer.writeVarUInt64(LBVarUInt64.MIN_VALUE);
+
+            // ========== String ==========
+            let strEN = "ABCDEFGH";
+            let strCN = "一二三四五六七八";
+            let strMix = strEN + strCN;
+            writer.writeASCII("ASCII");
+            writer.writeUnicode("Unicode编码");
+            writer.writeUTF8("UTF8编码");
+            writer.writeVarUTF("VarUTF编码");
+
+            console.log("========== ToBytes ==========")
+            console.log(writer.toBytes());
+            reader.bytes = writer.toBytes();
+
+            console.log("========== Read value from bytes ==========")
+            console.log("========== Read Int8 ==========")
+            console.log(reader.readInt8());
+            console.log(reader.readInt8());
+            console.log(reader.readInt8());
+            console.log("========== Read Int16 ==========")
+            console.log(reader.readInt16());
+            console.log(reader.readInt16());
+            console.log(reader.readInt16());
+            console.log("========== Read Int24 ==========")
+            console.log(reader.readInt24());
+            console.log(reader.readInt24());
+            console.log(reader.readInt24());
+            console.log("========== Read Int32 ==========")
+            console.log(reader.readInt32());
+            console.log(reader.readInt32());
+            console.log(reader.readInt32());
+            console.log("========== Read UInt8 ==========")
+            console.log(reader.readUInt8());
+            console.log(reader.readUInt8());
+            console.log(reader.readUInt8());
+            console.log("========== Read UInt16 ==========")
+            console.log(reader.readUInt16());
+            console.log(reader.readUInt16());
+            console.log(reader.readUInt16());
+            console.log("========== Read UInt24 ==========")
+            console.log(reader.readUInt24());
+            console.log(reader.readUInt24());
+            console.log(reader.readUInt24());
+            console.log("========== Read UInt32 ==========")
+            console.log(reader.readUInt32());
+            console.log(reader.readUInt32());
+            console.log(reader.readUInt32());
+            console.log("========== Read Float8 ==========")
+            let float8s = new Array(11);
+            for (let i = 0; i <= 10; i++) {
+                float8s[i] = reader.readFloat8();
+            }
+            console.log(float8s);
+            console.log("========== Read Float16 ==========")
+            console.log(reader.readFloat16());
+            console.log(reader.readFloat16());
+            console.log(reader.readFloat16());
+            console.log("========== Read Float24 ==========")
+            console.log(reader.readFloat24());
+            console.log(reader.readFloat24());
+            console.log(reader.readFloat24());
+            console.log("========== Read Float32 ==========")
+            console.log(reader.readFloat32());
+            console.log(reader.readFloat32());
+            console.log(reader.readFloat32());
+            console.log("========== Read Float64 ==========")
+            console.log(reader.readFloat64());
+            console.log(reader.readFloat64());
+            console.log(reader.readFloat64());
+            console.log("========== Read VarInt16 ==========")
+            console.log(reader.readVarInt16());
+            console.log(reader.readVarInt16());
+            console.log(reader.readVarInt16());
+            console.log("========== Read VarInt32 ==========")
+            console.log(reader.readVarInt32());
+            console.log(reader.readVarInt32());
+            console.log(reader.readVarInt32());
+            //console.log("========== VarInt64 ==========")
+            //console.log(reader.readVarInt64());
+            //console.log(reader.readVarInt64());
+            //console.log(reader.readVarInt64());
+            console.log("========== Read VarUInt16 ==========")
+            console.log(reader.readVarUInt16());
+            console.log(reader.readVarUInt16());
+            console.log(reader.readVarUInt16());
+            console.log("========== Read VarUInt32 ==========")
+            console.log(reader.readVarUInt32());
+            console.log(reader.readVarUInt32());
+            console.log(reader.readVarUInt32());
+            //console.log("========== VarUInt64 ==========")
+            //console.log(reader.readVarUInt64());
+            //console.log(reader.readVarUInt64());
+            //console.log(reader.readVarUInt64());
+            console.log("========== Read String ==========")
+            console.log("ASCII:" + reader.readASCII());
+            console.log("Unicode:" + reader.readUnicode());
+            console.log("UTF8:" + reader.readUTF8());
+            console.log("VarUTF:" + reader.readVarUTF());
+        </script>
+    </head>
+    <body>Hello World
+        <p>Demo(alpha) info see [Console]</p>
+        <p>测试版 js功能还未完成</p>
+    </body>
+</html>
