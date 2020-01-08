@@ -510,7 +510,7 @@ namespace LiteByte.Converters {
         }
         #endregion
 
-        #region Variable Integer
+        #region Variant-length Integer
         public void WriteVarInt16(short value) {
             // 根据数值范围 写入字节(1比特 + 1 ~ 2字节) | Write bytes (1bit + 1 ~ 2bytes) according to numeric range
             if (value <= LBInt8.MaxValue && value >= LBInt8.MinValue) {
@@ -657,7 +657,7 @@ namespace LiteByte.Converters {
             byteIndex += Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, byteIndex);
         }
 
-        public void WriteVarUTF(string value) {
+        public void WriteVarUnicode(string value) {
             if (!WriteValidStringLength(value)) return;
             // 获取字符数和字节数 | Get char count and byte count
             int charCount = 0;
@@ -940,7 +940,7 @@ namespace LiteByte.Converters {
         }
         #endregion
 
-        #region Variable Integer Array
+        #region Variant-length Integer Array
         public void WriteVarInt16Array(short[] array) {
             if (!WriteValidArrayLength(array, LBVarInt16.MinByteSize)) return;
             for (int i = 0; i < array.Length; i++) {
@@ -1006,10 +1006,10 @@ namespace LiteByte.Converters {
             }
         }
 
-        public void WriteVarUTFArray(string[] array) {
+        public void WriteVarUnicodeArray(string[] array) {
             if (!WriteValidArrayLength(array, 2)) return;
             for (int i = 0; i < array.Length; i++) {
-                WriteVarUTF(array[i]);
+                WriteVarUnicode(array[i]);
             }
         }
         #endregion

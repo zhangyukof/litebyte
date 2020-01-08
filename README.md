@@ -142,7 +142,7 @@ Float24(float) | 3Byte | 5Bit | ±1.8447E +19
 Float32(float) | 4Byte | 7Bit | ±3.402823E +38
 Float64(double) | 8Byte | 15Bit | ±1.7976931348623157E +308
 
-#### Variable Integer(7 Types)
+#### Variant-length Integer(7 Types)
 Type | Size | Value Range
  --|--|--
 VarInt16(short) | 1Bit + 1~2Byte | Same as Int16
@@ -295,7 +295,7 @@ ASCII   | 1Byte   | string | string | string | string
 
 ## Data type description
 1.Bool type is best supported, with a bool type occupying only 1 bit (1/8 bytes).<br/>
-2.Variable length integers are supported(short, int, long, ushort, uint, ulong).<br/>
+2.Variant-length integers are supported(short, int, long, ushort, uint, ulong).<br/>
 3.Support for null values (string, array, object).<br/>
 4.When defining data formats, it is recommended that fields be defined as small as possible so that the volume of serialized data is smaller.<br/>
 5.You can give nicknames to basic data types, define your own style for writing.<br/>

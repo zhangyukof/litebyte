@@ -1,0 +1,6 @@
+// String Type
+struct VarUnicodeType {
+
+	VarUnicode str;
+
+}

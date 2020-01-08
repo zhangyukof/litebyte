@@ -358,18 +358,6 @@ class LBReader {
                this._bytes[this._byteIndex++] << 28) - 1;
     }
 
-    // _________________________ VarUIntArray _________________________
-    readVarUInt32Array() {
-        let length = this.readVarLength();
-        if (length == -1) return null;
-        if (length == 0) return new Uint32Array(new ArrayBuffer(0));
-        let array = new Uint32Array(new ArrayBuffer(length * 4));
-        for (let i = 0; i < length; i++) {
-            array[i] = this.readVarUInt32();
-        }
-        return array;
-    }
-
     // _________________________ String _________________________
     readASCII() {
         let charCount = this.readVarLength();
@@ -398,12 +386,449 @@ class LBReader {
         return value;
     }
 
-    readVarUTF() {
-        let charCodes = this.readVarUInt32Array();
-        if (charCodes == null) return null;
-        if (charCodes.length == 0) return "";
-        return String.fromCodePoint.apply(null, charCodes);
+    readVarUnicode() {
+        let charCount = this.readVarLength();
+        if (charCount == -1) return null;
+        if (charCount == 0) return "";
+        let value = "";
+        for (let i = 0; i < charCount; i++) {
+            value += String.fromCharCode(this.readVarUInt32());
+        }
+        return value;
     }
+
+    // _________________________ Bit Array _________________________
+    readBit1Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return [];
+        let array = new Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit1();
+        }
+        return array;
+    }
+
+    readBit2Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit2();
+        }
+        return array;
+    }
+
+    readBit3Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit3();
+        }
+        return array;
+    }
+
+    readBit4Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit4();
+        }
+        return array;
+    }
+
+    readBit5Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit5();
+        }
+        return array;
+    }
+
+    readBit6Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit6();
+        }
+        return array;
+    }
+
+    readBit7Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readBit7();
+        }
+        return array;
+    }
+
+    // _________________________ Int Array _________________________
+    readInt8Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int8Array();
+        let array = new Int8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt8();
+        }
+        return array;
+    }
+
+    readInt16Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int16Array();
+        let array = new Int16Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt16();
+        }
+        return array;
+    }
+
+    readInt24Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int32Array();
+        let array = new Int32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt24();
+        }
+        return array;
+    }
+
+    readInt32Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int32Array();
+        let array = new Int32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt32();
+        }
+        return array;
+    }
+
+    /*
+    readInt40Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int64Array();
+        let array = new Int64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt40();
+        }
+        return array;
+    }
+
+    readInt48Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int64Array();
+        let array = new Int64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt48();
+        }
+        return array;
+    }
+
+    readInt56Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int64Array();
+        let array = new Int64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt56();
+        }
+        return array;
+    }
+
+    readInt64Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int64Array();
+        let array = new Int64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readInt64();
+        }
+        return array;
+    }
+    */
+
+    // _________________________ UInt Array _________________________
+    readUInt8Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint8Array();
+        let array = new Uint8Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt8();
+        }
+        return array;
+    }
+
+    readUInt16Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint16Array();
+        let array = new Uint16Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt16();
+        }
+        return array;
+    }
+
+    readUInt24Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint32Array();
+        let array = new Uint32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt24();
+        }
+        return array;
+    }
+
+    readUInt32Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint32Array();
+        let array = new Uint32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt32();
+        }
+        return array;
+    }
+
+    /*
+    readUInt40Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint64Array();
+        let array = new Uint64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt40();
+        }
+        return array;
+    }
+
+    readUInt48Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint64Array();
+        let array = new Uint64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt48();
+        }
+        return array;
+    }
+
+    readUInt56Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint64Array();
+        let array = new Uint64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt56();
+        }
+        return array;
+    }
+
+    readUInt64Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint64Array();
+        let array = new Uint64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUInt64();
+        }
+        return array;
+    }
+    */
+
+    // _________________________ Float Array _________________________
+    readFloat8Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Float32Array();
+        let array = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readFloat8();
+        }
+        return array;
+    }
+
+    readFloat16Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Float32Array();
+        let array = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readFloat16();
+        }
+        return array;
+    }
+
+    readFloat24Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Float32Array();
+        let array = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readFloat24();
+        }
+        return array;
+    }
+
+    readFloat32Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Float32Array();
+        let array = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readFloat32();
+        }
+        return array;
+    }
+
+    readFloat64Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Float64Array();
+        let array = new Float64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readFloat64();
+        }
+        return array;
+    }
+
+    // _________________________ String Array _________________________
+    readASCIIArray() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return [];
+        let array = new Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readASCII();
+        }
+        return array;
+    }
+
+    readUnicodeArray() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return [];
+        let array = new Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUnicode();
+        }
+        return array;
+    }
+
+    readUTF8Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return [];
+        let array = new Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readUTF8();
+        }
+        return array;
+    }
+
+    readVarUnicodeArray() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return [];
+        let array = new Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarUnicode();
+        }
+        return array;
+    }
+
+    // _________________________ VarInt Array _________________________
+    readVarInt16Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int16Array();
+        let array = new Int16Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarInt16();
+        }
+        return array;
+    }
+
+    readVarInt32Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int32Array();
+        let array = new Int32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarInt32();
+        }
+        return array;
+    }
+
+    /*
+    readVarInt64Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Int64Array();
+        let array = new Int64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarInt32();
+        }
+        return array;
+    }
+    */
+
+    // _________________________ VarUInt Array _________________________
+    readVarUInt16Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint16Array();
+        let array = new Uint16Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarUInt16();
+        }
+        return array;
+    }
+
+    readVarUInt32Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint32Array();
+        let array = new Uint32Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarUInt32();
+        }
+        return array;
+    }
+
+    /*
+    readVarUInt64Array() {
+        let length = this.readVarLength();
+        if (length == -1) return null;
+        if (length == 0) return new Uint64Array();
+        let array = new Uint64Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = this.readVarUInt32();
+        }
+        return array;
+    }
+    */
 
     // _________________________ API _________________________
     set bytes(value) {

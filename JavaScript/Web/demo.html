@@ -5,7 +5,7 @@
             let writer = new LBWriter();
             let reader = new LBReader();
 
-            // ========== Int ==========
+            // ========== Write Int ==========
             writer.writeInt8(-8);
             writer.writeInt8(LBInt8.MAX_VALUE);
             writer.writeInt8(LBInt8.MIN_VALUE);
@@ -22,7 +22,7 @@
             writer.writeInt32(LBInt32.MAX_VALUE);
             writer.writeInt32(LBInt32.MIN_VALUE);
 
-            // ========== UInt ==========
+            // ========== Write UInt ==========
             writer.writeUInt8(8);
             writer.writeUInt8(LBUInt8.MAX_VALUE);
             writer.writeUInt8(LBUInt8.MIN_VALUE);
@@ -43,7 +43,7 @@
                 writer.writeFloat8(i / 255);
             }
 
-            // ========== Float ==========
+            // ========== Write Float ==========
             writer.writeFloat16(0.1234567);
             writer.writeFloat16(LBFloat16.MAX_VALUE);
             writer.writeFloat16(LBFloat16.MIN_VALUE);
@@ -60,7 +60,7 @@
             writer.writeFloat64(LBFloat64.MAX_VALUE);
             writer.writeFloat64(LBFloat64.MIN_VALUE);
 
-            // ========== VarInt ==========
+            // ========== Write VarInt ==========
             writer.writeVarInt16(-16);
             writer.writeVarInt16(LBVarInt16.MAX_VALUE);
             writer.writeVarInt16(LBVarInt16.MIN_VALUE);
@@ -73,27 +73,76 @@
             //writer.writeVarInt64(LBVarInt64.MAX_VALUE);
             //writer.writeVarInt64(LBVarInt64.MIN_VALUE);
 
-            // ========== VarUInt ==========
+            // ========== Write VarUInt ==========
             writer.writeVarUInt16(16);
             writer.writeVarUInt16(LBVarUInt16.MAX_VALUE);
             writer.writeVarUInt16(LBVarUInt16.MIN_VALUE);
 
             writer.writeVarUInt32(32);
             writer.writeVarUInt32(LBVarUInt32.MAX_VALUE);
-            writer.writeVarUInt32(LBVarUInt32.MIN_VALUE);
+            writer.writeVarUInt32(LBVarUInt64.MIN_VALUE);
 
             //writer.writeVarUInt64(64);
             //writer.writeVarUInt64(LBVarUInt64.MAX_VALUE);
             //writer.writeVarUInt64(LBVarUInt64.MIN_VALUE);
 
-            // ========== String ==========
-            let strEN = "ABCDEFGH";
-            let strCN = "一二三四五六七八";
-            let strMix = strEN + strCN;
+            // ========== Write String ==========
             writer.writeASCII("ASCII");
             writer.writeUnicode("Unicode编码");
             writer.writeUTF8("UTF8编码");
-            writer.writeVarUTF("VarUTF编码");
+            writer.writeVarUnicode("VarUnicode编码");
+
+            // ========== Write Bit Array ==========
+            writer.writeBit1Array([true, false, true, false, true, false, true, false]);
+            writer.writeBit2Array([0, 1, 2, 3]);
+            writer.writeBit3Array([0, 1, 2, 3, 4, 5, 6, 7]);
+            writer.writeBit4Array([LBBit4.MIN_VALUE, LBBit4.MAX_VALUE]);
+            writer.writeBit5Array([LBBit5.MIN_VALUE, LBBit5.MAX_VALUE]);
+            writer.writeBit6Array([LBBit6.MIN_VALUE, LBBit6.MAX_VALUE]);
+            writer.writeBit7Array([LBBit7.MIN_VALUE, LBBit7.MAX_VALUE]);
+
+            // ========== Write Int Array ==========
+            writer.writeInt8Array([LBInt8.MIN_VALUE, 0, LBInt8.MAX_VALUE]);
+            writer.writeInt16Array([LBInt16.MIN_VALUE, 0, LBInt16.MAX_VALUE]);
+            writer.writeInt24Array([LBInt24.MIN_VALUE, 0, LBInt24.MAX_VALUE]);
+            writer.writeInt32Array([LBInt32.MIN_VALUE, 0, LBInt32.MAX_VALUE]);
+            //writer.writeInt40Array([LBInt40.MIN_VALUE, 0, LBInt40.MAX_VALUE]);
+            //writer.writeInt48Array([LBInt48.MIN_VALUE, 0, LBInt48.MAX_VALUE]);
+            //writer.writeInt56Array([LBInt56.MIN_VALUE, 0, LBInt56.MAX_VALUE]);
+            //writer.writeInt64Array([LBInt64.MIN_VALUE, 0, LBInt64.MAX_VALUE]);
+
+            // ========== Write UInt Array ==========
+            writer.writeUInt8Array([LBUInt8.MIN_VALUE, LBUInt8.MAX_VALUE]);
+            writer.writeUInt16Array([LBUInt16.MIN_VALUE, LBUInt16.MAX_VALUE]);
+            writer.writeUInt24Array([LBUInt24.MIN_VALUE, LBUInt24.MAX_VALUE]);
+            writer.writeUInt32Array([LBUInt32.MIN_VALUE, LBUInt32.MAX_VALUE]);
+            //writer.writeUInt40Array([LBUInt40.MIN_VALUE, LBUInt40.MAX_VALUE]);
+            //writer.writeUInt48Array([LBUInt48.MIN_VALUE, LBUInt48.MAX_VALUE]);
+            //writer.writeUInt56Array([LBUInt56.MIN_VALUE, LBUInt56.MAX_VALUE]);
+            //writer.writeUInt64Array([LBUInt64.MIN_VALUE, LBUInt64.MAX_VALUE]);
+
+            // ========== Write Float Array ==========
+            writer.writeFloat8Array([1 / 255, 2 / 255, 3 / 255]);
+            writer.writeFloat16Array([LBFloat16.MIN_VALUE, LBFloat16.MAX_VALUE]);
+            writer.writeFloat24Array([LBFloat24.MIN_VALUE, LBFloat24.MAX_VALUE]);
+            writer.writeFloat32Array([LBFloat32.MIN_VALUE, LBFloat32.MAX_VALUE]);
+            writer.writeFloat64Array([LBFloat64.MIN_VALUE, LBFloat64.MAX_VALUE]);
+
+            // ========== Write VarInt Array ==========
+            writer.writeVarInt16Array([0, LBInt16.MIN_VALUE, LBInt16.MAX_VALUE]);
+            writer.writeVarInt32Array([0, LBInt32.MIN_VALUE, LBInt32.MAX_VALUE]);
+            //writer.writeVarInt64Array([0, LBInt64.MIN_VALUE, LBInt64.MAX_VALUE]);
+
+            // ========== Write VarUInt Array ==========
+            writer.writeVarUInt16Array([0, LBUInt16.MIN_VALUE, LBUInt16.MAX_VALUE]);
+            writer.writeVarUInt32Array([0, LBUInt32.MIN_VALUE, LBUInt32.MAX_VALUE]);
+            //writer.writeVarUInt64Array([0, LBUInt64.MIN_VALUE, LBUInt64.MAX_VALUE]);
+
+            // ========== Write String Array ==========
+            writer.writeASCIIArray(["Hello", "World"]);
+            writer.writeUnicodeArray(["Unicode", "编码"]);
+            writer.writeUTF8Array(["UTF8", "编码"]);
+            writer.writeVarUnicodeArray(["VarUnicode", "编码"]);
 
             console.log("========== ToBytes ==========")
             console.log(writer.toBytes());
@@ -182,7 +231,123 @@
             console.log("ASCII:" + reader.readASCII());
             console.log("Unicode:" + reader.readUnicode());
             console.log("UTF8:" + reader.readUTF8());
-            console.log("VarUTF:" + reader.readVarUTF());
+            console.log("VarUnicode:" + reader.readVarUnicode());
+            console.log("========== Read Bit Array ==========")
+            console.log("Bit1 Array:");
+            console.log(reader.readBit1Array());
+            console.log("Bit2 Array:");
+            console.log(reader.readBit2Array());
+            console.log("Bit3 Array:");
+            console.log(reader.readBit3Array());
+            console.log("Bit4 Array:");
+            console.log(reader.readBit4Array());
+            console.log("Bit5 Array:");
+            console.log(reader.readBit5Array());
+            console.log("Bit6 Array:");
+            console.log(reader.readBit6Array());
+            console.log("Bit7 Array:");
+            console.log(reader.readBit7Array());
+            console.log("========== Read Int Array ==========")
+            console.log("Int8 Array:");
+            console.log(reader.readInt8Array());
+            console.log("Int16 Array:");
+            console.log(reader.readInt16Array());
+            console.log("Int24 Array:");
+            console.log(reader.readInt24Array());
+            console.log("Int32 Array:");
+            console.log(reader.readInt32Array());
+            //console.log("Int40Array:");
+            //console.log(reader.readInt40Array());
+            //console.log("Int48Array:");
+            //console.log(reader.readInt48Array());
+            //console.log("Int56Array:");
+            //console.log(reader.readInt56Array());
+            //console.log("Int64Array:");
+            //console.log(reader.readInt64Array());
+            console.log("========== Read UInt Array ==========")
+            console.log("UInt8 Array:");
+            console.log(reader.readUInt8Array());
+            console.log("UInt16 Array:");
+            console.log(reader.readUInt16Array());
+            console.log("UInt24 Array:");
+            console.log(reader.readUInt24Array());
+            console.log("UInt32 Array:");
+            console.log(reader.readUInt32Array());
+            //console.log("Int40Array:");
+            //console.log(reader.readInt40Array());
+            //console.log("Int48Array:");
+            //console.log(reader.readInt48Array());
+            //console.log("Int56Array:");
+            //console.log(reader.readInt56Array());
+            //console.log("Int64Array:");
+            //console.log(reader.readInt64Array());
+            console.log("========== Read Float Array ==========")
+            console.log("Float8 Array:");
+            console.log(reader.readFloat8Array());
+            console.log("Float16 Array:");
+            console.log(reader.readFloat16Array());
+            console.log("Float24 Array:");
+            console.log(reader.readFloat24Array());
+            console.log("Float32 Array:");
+            console.log(reader.readFloat32Array());
+            console.log("Float64 Array:");
+            console.log(reader.readFloat64Array());
+
+            console.log("========== Read VarInt Array ==========")
+            console.log("VarInt16 Array:");
+            console.log(reader.readVarInt16Array());
+            console.log("VarInt32 Array:");
+            console.log(reader.readVarInt32Array());
+            //console.log("VarInt64 Array:");
+            //console.log(reader.readVarInt64Array());
+            console.log("========== Read VarUInt Array ==========")
+            console.log("VarUInt16 Array:");
+            console.log(reader.readVarUInt16Array());
+            console.log("VarUInt32 Array:");
+            console.log(reader.readVarUInt32Array());
+            //console.log("VarUInt64 Array:");
+            //console.log(reader.readVarUInt64Array());
+            console.log("========== Read String Array ==========")
+            console.log("ASCII Array:");
+            console.log(reader.readASCIIArray());
+            console.log("Unicode Array:");
+            console.log(reader.readUnicodeArray());
+            console.log("UTF8 Array:");
+            console.log(reader.readUTF8Array());
+            console.log("VarUnicode Array:");
+            console.log(reader.readVarUnicodeArray());
+
+            function compare() {
+                let writer = new LBWriter();
+                let reader = new LBReader();
+                //writer.writeVarUnicode("A");
+                //reader.bytes = writer.toBytes();
+                //console.log(writer.toBytes());
+                //console.log(reader.readVarUnicode());
+
+                //writer.writeUnicode("一二三四五");
+                //reader.bytes = writer.toBytes();
+                //console.log(writer.toBytes());
+                //console.log(reader.readUnicode());
+
+                /*
+                let times = 10000;
+
+                let t1 = new Date().getTime();
+                for (let i = 0; i < times; i++) {
+                    String.fromCharCode.apply(null, arr);
+                }
+                let t2 = new Date().getTime();
+                console.log("t1:" + (t2 - t1))
+                
+                t1 = new Date().getTime();
+                for (let i = 0; i < times; i++) {
+                    
+                }
+                t2 = new Date().getTime();
+                console.log("t2:" + (t2 - t1))
+                */
+            }
         </script>
     </head>
     <body>Hello World

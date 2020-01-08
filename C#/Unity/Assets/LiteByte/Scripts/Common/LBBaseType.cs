@@ -39,7 +39,7 @@ namespace LiteByte.Common {
         UInt8, UInt16, UInt24, UInt32, UInt40, UInt48, UInt56, UInt64,
         Float8, Float16, Float24, Float32, Float64,
         VarInt16, VarInt32, VarInt64, VarUInt16, VarUInt32, VarUInt64,
-        ASCII, Unicode, UTF8, VarUTF
+        ASCII, Unicode, UTF8, VarUnicode
     }
     #endregion
 
@@ -254,8 +254,8 @@ namespace LiteByte.Common {
 
     #endregion
 
-    #region Variable Integer
-    /// <summary> 1位+1~2字节变长有符号整数(short) | 1-bit + 1~2bytes variable signed integer(short) </summary>
+    #region Variant Integer
+    /// <summary> 1位+1~2字节变长有符号整数(short) | 1-bit + 1~2bytes variant-length signed integer(short) </summary>
     public struct LBVarInt16 {
         public const short MaxValue = short.MaxValue;
         public const short MinValue = short.MinValue;
@@ -263,7 +263,7 @@ namespace LiteByte.Common {
         public const float MaxByteSize = 1F / 8F + 2F;
     }
 
-    /// <summary> 2位+1~4字节变长有符号整数(int) | 2-bit + 1~4bytes variable signed integer(int) </summary>
+    /// <summary> 2位+1~4字节变长有符号整数(int) | 2-bit + 1~4bytes variant-length signed integer(int) </summary>
     public struct LBVarInt32 {
         public const int MaxValue = int.MaxValue;
         public const int MinValue = int.MinValue;
@@ -271,7 +271,7 @@ namespace LiteByte.Common {
         public const float MaxByteSize = 2F / 8F + 4F;
     }
 
-    /// <summary> 3位+1~8字节变长有符号整数(int) | 3-bit + 1~8bytes variable signed integer(long) </summary>
+    /// <summary> 3位+1~8字节变长有符号整数(int) | 3-bit + 1~8bytes variant-length signed integer(long) </summary>
     public struct LBVarInt64 {
         public const long MaxValue = long.MaxValue;
         public const long MinValue = long.MinValue;
@@ -279,7 +279,7 @@ namespace LiteByte.Common {
         public const float MaxByteSize = 3F / 8F + 8F;
     }
 
-    /// <summary> 1位+1~2字节变长无符号整数(ushort) | 1-bit + 1~2bytes variable unsigned integer(ushort) </summary>
+    /// <summary> 1位+1~2字节变长无符号整数(ushort) | 1-bit + 1~2bytes variant-length unsigned integer(ushort) </summary>
     public struct LBVarUInt16 {
         public const ushort MaxValue = ushort.MaxValue;
         public const ushort MinValue = ushort.MinValue;
@@ -287,7 +287,7 @@ namespace LiteByte.Common {
         public const float MaxByteSize = 1F / 8F + 2F;
     }
 
-    /// <summary> 2位+1~4字节变长无符号整数(int) | 2-bit + 1~4bytes variable unsigned integer(uint) </summary>
+    /// <summary> 2位+1~4字节变长无符号整数(int) | 2-bit + 1~4bytes variant-length unsigned integer(uint) </summary>
     public struct LBVarUInt32 {
         public const uint MaxValue = uint.MaxValue;
         public const uint MinValue = uint.MinValue;
@@ -295,7 +295,7 @@ namespace LiteByte.Common {
         public const float MaxByteSize = 2F / 8F + 4F;
     }
 
-    /// <summary> 3位+1~8字节变长无符号整数(int) | 3-bit + 1~8bytes variable unsigned integer(ulong) </summary>
+    /// <summary> 3位+1~8字节变长无符号整数(int) | 3-bit + 1~8bytes variant-length unsigned integer(ulong) </summary>
     public struct LBVarUInt64 {
         public const ulong MaxValue = ulong.MaxValue;
         public const ulong MinValue = ulong.MinValue;

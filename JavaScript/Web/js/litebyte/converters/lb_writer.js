@@ -37,6 +37,10 @@ const LBWriterStatic = {
         for (let i = 0; i < length; i++) {
             targetArray[i] = sourceArray[i];
         }
+    },
+    isFloat8(value) {
+        if (value < LBFloat8.MIN_VALUE || value > LBFloat8.MAX_VALUE) return false;
+        return value * 255 % 1 == 0;
     }
 };
 
@@ -457,11 +461,6 @@ class LBWriter {
         this._byteIndex += 8;
     }
 
-    isFloat8(value) {
-        if (value < LBFloat8.MIN_VALUE || value > LBFloat8.MAX_VALUE) return false;
-        return value * 255 % 1 == 0;
-    }
-
     // _________________________ VarInt _________________________
     writeVarInt16(value) {
         if (value <= LBInt8.MAX_VALUE && value >= LBInt8.MIN_VALUE) {
@@ -605,7 +604,7 @@ class LBWriter {
         this._byteIndex += LBEncoding.UTF8.getBytes(value, this._buffer, this._byteIndex);
     }
 
-    writeVarUTF(value) {
+    writeVarUnicode(value) {
         if (!this.writeValidStringLength(value)) return;
         // 获取字符数和字节数 | Get char count and byte count
         let charCount = 0;
@@ -635,14 +634,312 @@ class LBWriter {
         }
     }
 
+    // _________________________ Bit Array _________________________
+    writeBit1Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit1.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit1(array[i]);
+        }
+    }
+
+    writeBit2Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit2.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit2(array[i]);
+        }
+    }
+
+    writeBit3Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit3.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit3(array[i]);
+        }
+    }
+
+    writeBit4Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit4.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit4(array[i]);
+        }
+    }
+
+    writeBit5Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit5.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit5(array[i]);
+        }
+    }
+
+    writeBit6Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit6.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit6(array[i]);
+        }
+    }
+
+    writeBit7Array(array) {
+        if (!this.writeValidArrayLength(array, LBBit7.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeBit7(array[i]);
+        }
+    }
+
+    // _________________________ Int Array _________________________
+    writeInt8Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt8.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt8(array[i]);
+        }
+    }
+
+    writeInt16Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt16.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt16(array[i]);
+        }
+    }
+
+    writeInt24Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt24.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt24(array[i]);
+        }
+    }
+
+    writeInt32Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt32.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt32(array[i]);
+        }
+    }
+
+    /*
+    writeInt40Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt40.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt40(array[i]);
+        }
+    }
+
+    writeInt48Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt48.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt48(array[i]);
+        }
+    }
+
+    writeInt56Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt56.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt56(array[i]);
+        }
+    }
+
+    writeInt64Array(array) {
+        if (!this.writeValidArrayLength(array, LBInt64.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeInt64(array[i]);
+        }
+    }
+    */
+
+    // _________________________ UInt Array _________________________
+    writeUInt8Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt8.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt8(array[i]);
+        }
+    }
+
+    writeUInt16Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt16.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt16(array[i]);
+        }
+    }
+
+    writeUInt24Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt24.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt24(array[i]);
+        }
+    }
+
+    writeUInt32Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt32.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt32(array[i]);
+        }
+    }
+
+    /*
+    writeUInt40Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt40.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt40(array[i]);
+        }
+    }
+
+    writeUInt48Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt48.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt48(array[i]);
+        }
+    }
+
+    writeUInt56Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt56.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt56(array[i]);
+        }
+    }
+
+    writeUInt64Array(array) {
+        if (!this.writeValidArrayLength(array, LBUInt64.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUInt64(array[i]);
+        }
+    }
+    */
+
+    // _________________________ Float Array _________________________
+    writeFloat8Array(array) {
+        if (!this.writeValidArrayLength(array, LBFloat8.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeFloat8(array[i]);
+        }
+    }
+
+    writeFloat16Array(array) {
+        if (!this.writeValidArrayLength(array, LBFloat16.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeFloat16(array[i]);
+        }
+    }
+
+    writeFloat24Array(array) {
+        if (!this.writeValidArrayLength(array, LBFloat24.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeFloat24(array[i]);
+        }
+    }
+
+    writeFloat32Array(array) {
+        if (!this.writeValidArrayLength(array, LBFloat32.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeFloat32(array[i]);
+        }
+    }
+
+    writeFloat64Array(array) {
+        if (!this.writeValidArrayLength(array, LBFloat64.BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeFloat64(array[i]);
+        }
+    }
+
+    // _________________________ VarInt Array _________________________
+    writeVarInt16Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarInt16.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarInt16(array[i]);
+        }
+    }
+
+    writeVarInt32Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarInt32.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarInt32(array[i]);
+        }
+    }
+
+    /*
+    writeVarInt64Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarInt64.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarInt64(array[i]);
+        }
+    }
+    */
+
+    // _________________________ VarUInt Array _________________________
+    writeVarUInt16Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarUInt16.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarUInt16(array[i]);
+        }
+    }
+
+    writeVarUInt32Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarUInt32.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarUInt32(array[i]);
+        }
+    }
+
+    /*
+    writeVarUInt64Array(array) {
+        if (!this.writeValidArrayLength(array, LBVarUInt64.MIN_BYTE_SIZE)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarUInt64(array[i]);
+        }
+    }
+    */
+
+    // _________________________ String Array _________________________
+    writeASCIIArray(array) {
+        if (!this.writeValidArrayLength(array, 1)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeASCII(array[i]);
+        }
+    }
+
+    writeUnicodeArray(array) {
+        if (!this.writeValidArrayLength(array, 2)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUnicode(array[i]);
+        }
+    }
+
+    writeUTF8Array(array) {
+        if (!this.writeValidArrayLength(array, 2)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeUTF8(array[i]);
+        }
+    }
+
+    writeVarUnicodeArray(array) {
+        if (!this.writeValidArrayLength(array, 2)) return;
+        for (let i = 0; i < array.length; i++) {
+            this.writeVarUnicode(array[i]);
+        }
+    }
+    
+    // _________________________ Tools _________________________    
     writeValidStringLength(value) {
         if (value == null) {
             WriteVarLength(-1);
             return false;
-        } else if (value.Length == 0) {
+        } else if (value.length == 0) {
             WriteVarLength(0);
             return false;
         } else {
+            return true;
+        }
+    }
+
+    writeValidArrayLength(array, typeSize) {
+        if (array == null) {
+            this.writeVarLength(-1);
+            return false;
+        } else if (array.length == 0) {
+            this.writeVarLength(0);
+            return false;
+        } else {
+            this.writeVarLength(array.length);
+            let size = array.length * typeSize;
+            if (size % 1 != 0) size = Math.ceil(size);
+            this.requireSize(size);
             return true;
         }
     }
@@ -695,3 +992,4 @@ LBWriter.prototype.DEFAULT_CAPACITY = LBWriterStatic.DEFAULT_CAPACITY;
 LBWriter.prototype.BIT_LOCATION_VALUES = LBWriterStatic.BIT_LOCATION_VALUES;
 LBWriter.prototype.BIT1_LOCATION_VALUES = LBWriterStatic.BIT1_LOCATION_VALUES;
 LBWriter.prototype.copyArray = LBWriterStatic.copyArray;
+LBWriter.prototype.isFloat8 = LBWriterStatic.isFloat8;

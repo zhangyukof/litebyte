@@ -309,14 +309,14 @@
             ClassTest("UTF8Type", st, lb);
         }
 
-        public void StringVarUTFTest() {
-            ST_VarUTFType st = new ST_VarUTFType();
+        public void StringVarUnicodeTest() {
+            ST_VarUnicodeType st = new ST_VarUnicodeType();
             st.str = "ABCDEFGH一二三四五六七八";
 
             LBObject lb = new LBObject();
             lb.SetString("str", st.str);
 
-            ClassTest("VarUTFType", st, lb);
+            ClassTest("VarUnicodeType", st, lb);
         }
         #endregion
 
@@ -664,7 +664,7 @@
             st.float32Array = float32Array;
             st.float64Array = float64Array;
 
-            // Variable Integer Array
+            // Variant-length Integer Array
             short[] varInt16Array = new short[] { 1, -1, short.MinValue, short.MaxValue };
             int[] varInt32Array = new int[] { 1, -1, int.MinValue, int.MaxValue };
             long[] varInt64Array = new long[] { 1, -1, long.MaxValue, long.MinValue };
@@ -780,7 +780,7 @@
             lb.SetFloatArray("float32Array", st.float32Array);
             lb.SetDoubleArray("float64Array", st.float64Array);
 
-            // Variable Integer Array
+            // Variant-length Integer Array
             lb.SetShortArray("vint16Array", st.vint16Array);
             lb.SetIntArray("vint32Array", st.vint32Array);
             lb.SetLongArray("vint64Array", st.vint64Array);

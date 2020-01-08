@@ -1,9 +1,9 @@
 ============================== Explain ==============================
 LiteByte
-Version:0.6.14
+Version:0.6.15
 Author:ZhangYu
 CreateDate:2019-05-22
-LastModifiedDate:2020-01-07
+LastModifiedDate:2020-01-08
 GitHub:https://github.com/zhangyukof/litebyte
 
 Intro:
@@ -62,7 +62,7 @@ Type:Float24(single)  Size:3  Significant Digits:5Bit   Value Range:¡À1.8447E +1
 Type:Float32(single)  Size:4  Significant Digits:7Bit   Value Range:¡À3.402823E +38
 Type:Float64(double)  Size:8  Significant Digits:15Bit  Value Range:¡À1.7976931348623157E +308
 
------------------- Variable Integer(6 types) ------------------
+------------------ Variant Integer(6 types) ------------------
 Type:VarInt16(short)  Size:1Bit + 1~2Byte  Value Range:Same as Int16
 Type:VarInt32(int)    Size:2Bit + 1~4Byte  Value Range:Same as Int32
 Type:VarInt64(int)    Size:3Bit + 1~8Byte  Value Range:Same as Int64
@@ -74,7 +74,7 @@ Type:VarUInt64(int)   Size:3Bit + 1~8Byte	Value Range::Same as UInt64
 Type:UTF8		Size:1~4Byte	MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
 Type:Unicode	Size:2Byte	    MaxSize:(1~5) + (0 ~ int.MaxValue - 1) x 2 Bytes
 Type:ASCII		Size:1Byte	    MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
-Type:VarUTF		Size:1~5Byte	MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
+Type:VarUnicode		Size:1~5Byte	MaxSize:(1~5) + (0 ~ int.MaxValue - 1) Bytes
 
 ------------------ Complex Type(2 types) ------------------
 Type:Array		 Expression:{TypeName}[]
@@ -195,7 +195,7 @@ Float24  3Byte      float       float         float         float32
 Float32  4Byte      float       float         float         float32
 Float64  8Byte      double      double        double        float64
 
-Variable Integer£º
+Variant Integer£º
 VarInt16 1Bit+1~2Byte short      short         short         int16
 VarInt32 2Bit+1~4Byte int        int           int           int32
 VarInt64 3Bit+1~8Byte long       long          long long     int64

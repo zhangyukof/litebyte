@@ -75,7 +75,12 @@ class LBUnicodeEncoding {
     }
 
     getString(bytes, byteIndex, charCount) {
-        return new TextDecoder("utf-16").decode(new Uint8Array(bytes.buffer, byteIndex, charCount * 2));
+        let value = "";
+        for (let i = 0; i < charCount; i++) {
+            value += String.fromCharCode(bytes[byteIndex] | bytes[byteIndex + 1] << 8);
+            byteIndex += 2;
+        }
+        return value;
     }
 
 }

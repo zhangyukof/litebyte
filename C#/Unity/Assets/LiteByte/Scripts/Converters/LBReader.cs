@@ -340,7 +340,7 @@ namespace LiteByte.Converters {
         }
         #endregion
 
-        #region Variable Integer
+        #region Variant-length Integer
         public short ReadVarInt16() {
             if (ReadBit1()) return ReadInt16();
             return ReadInt8();
@@ -437,7 +437,7 @@ namespace LiteByte.Converters {
             return value;
         }
 
-        public string ReadVarUTF() {
+        public string ReadVarUnicode() {
             int charCount = ReadVarLength();
             if (charCount == -1) return null;
             if (charCount == 0) return string.Empty;
@@ -814,7 +814,7 @@ namespace LiteByte.Converters {
         }
         #endregion
 
-        #region Variable Integer Array
+        #region Variant-length Integer Array
         public short[] ReadVarInt16Array() {
             int length = ReadVarLength();
             if (length == -1) return null;
@@ -927,13 +927,13 @@ namespace LiteByte.Converters {
             return array;
         }
 
-        public string[] ReadVarUTFArray() {
+        public string[] ReadVarUnicodeArray() {
             int length = ReadVarLength();
             if (length == -1) return null;
             if (length == 0) return new string[0];
             string[] array = new string[length];
             for (int i = 0; i < length; i++) {
-                array[i] = ReadVarUTF();
+                array[i] = ReadVarUnicode();
             }
             return array;
         }

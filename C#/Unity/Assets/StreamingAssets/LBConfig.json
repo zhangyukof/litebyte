@@ -36,7 +36,7 @@
         "UTF8Type.lbs",
         "UnicodeType.lbs",
         "ASCIIType.lbs",
-        "VarUTFType.lbs",
+        "VarUnicodeType.lbs",
         "Vector3.lbs",
         "Color.lbs",
         "Color32.lbs",

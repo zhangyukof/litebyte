@@ -209,8 +209,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     writer.WriteUTF8(obj.GetString(type.Name));
                     break;
-                case LBBaseType.VarUTF:
-                    writer.WriteVarUTF(obj.GetString(type.Name));
+                case LBBaseType.VarUnicode:
+                    writer.WriteVarUnicode(obj.GetString(type.Name));
                     break;
                 default:
                     break;
@@ -365,8 +365,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     writer.WriteUTF8Array(obj.GetStringArray(type.Name));
                     break;
-                case LBBaseType.VarUTF:
-                    writer.WriteVarUTFArray(obj.GetStringArray(type.Name));
+                case LBBaseType.VarUnicode:
+                    writer.WriteVarUnicodeArray(obj.GetStringArray(type.Name));
                     break;
                 default:
                     break;
@@ -514,8 +514,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     writer.WriteUTF8((string)value);
                     break;
-                case LBBaseType.VarUTF:
-                    writer.WriteVarUTF((string)value);
+                case LBBaseType.VarUnicode:
+                    writer.WriteVarUnicode((string)value);
                     break;
                 default:
                     break;
@@ -678,8 +678,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     writer.WriteUTF8Array((string[])array);
                     break;
-                case LBBaseType.VarUTF:
-                    writer.WriteVarUTFArray((string[])array);
+                case LBBaseType.VarUnicode:
+                    writer.WriteVarUnicodeArray((string[])array);
                     break;
                 default:
                     break;
@@ -830,8 +830,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     obj.SetString(field.Name, reader.ReadUTF8());
                     break;
-                case LBBaseType.VarUTF:
-                    obj.SetString(field.Name, reader.ReadVarUTF());
+                case LBBaseType.VarUnicode:
+                    obj.SetString(field.Name, reader.ReadVarUnicode());
                     break;
                 default:
                     break;
@@ -997,8 +997,8 @@ namespace LiteByte.Converters {
                 case LBBaseType.UTF8:
                     obj.SetStringArray(type.Name, reader.ReadUTF8Array());
                     break;
-                case LBBaseType.VarUTF:
-                    obj.SetStringArray(type.Name, reader.ReadVarUTFArray());
+                case LBBaseType.VarUnicode:
+                    obj.SetStringArray(type.Name, reader.ReadVarUnicodeArray());
                     break;
                 default:
                     break;
