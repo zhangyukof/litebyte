@@ -1047,7 +1047,7 @@ namespace LiteByte.Converters {
                 return false;
             } else {
                 WriteVarLength(array.Length);
-                RequireSize((int)(array.Length * typeSize));
+                RequireSize((int)Math.Ceiling(array.Length * typeSize));
                 return true;
             }
         }
