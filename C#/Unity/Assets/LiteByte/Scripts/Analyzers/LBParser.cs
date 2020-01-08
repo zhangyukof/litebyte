@@ -204,16 +204,6 @@ namespace LiteByte.Analyzers {
             return false;
         }
 
-        /*
-        /// <summary> 获取期望类型 | Get expect type </summary>
-        private static LBTag GetExpectType(LBTag type) {
-            if (type == LBTag.LSquareBracket) return LBTag.RSquareBracket;
-            if (type == LBTag.LAngleBracket) return LBTag.RAngleBracket;
-            if (type == LBTag.LCurlyBrace) return LBTag.RCurlyBrace;
-            return LBTag.None;
-        }
-        */
-
         /// <summary> 字符串是否匹配 | Check if the string matches </summary>
         private static bool IsMatch(string code, LBToken token, string value) {
             if (token.length < value.Length) return false;

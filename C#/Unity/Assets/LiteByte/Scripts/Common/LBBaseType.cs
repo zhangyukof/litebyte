@@ -217,7 +217,7 @@ namespace LiteByte.Common {
     }
 
     /// <summary> 2字节有符号浮点数(有效数字:3位) | 2-bytes signed float(significant digits:3)
-    /// <para>[符号(1位) 指数(5位) 尾数(10位) 偏移(15)] [Sign(1bit) Exponent(5bits) Mantissa(10bits) Bias(15)]</para>
+    /// <para>[符号(1位) 指数(5位) 尾数(10位) 偏移(15)] | [Sign(1bit) Exponent(5bits) Mantissa(10bits) Bias(15)]</para>
     /// </summary>
     public struct LBFloat16 {
         public const float MaxValue = 1.31E+5F;
@@ -226,7 +226,7 @@ namespace LiteByte.Common {
     }
 
     /// <summary> 3字节有符号浮点数(有效数字:5位) | 3-bytes signed float(significant digits:5)
-    /// <para>[符号(1位) 指数(7位) 尾数(16位) 偏移(63)] [Sign(1bit) Exponent(7bits) Mantissa(16bits) Bias(63)]</para>
+    /// <para>[符号(1位) 指数(7位) 尾数(16位) 偏移(63)] | [Sign(1bit) Exponent(7bits) Mantissa(16bits) Bias(63)]</para>
     /// </summary>
     public struct LBFloat24 {
         public const float MaxValue = 3.6893E+19F;
@@ -235,7 +235,7 @@ namespace LiteByte.Common {
     }
 
     /// <summary> 4字节有符号浮点数(IEEE-754 有效数字:7位) | 4-bytes signed float(IEEE754 significant digits:7)
-    /// <para>[符号(1位) 指数(8位) 尾数(23位) 偏移(127)] [Sign(1bit) Exponent(8bits) Mantissa(23bits) Bias(127)]</para>
+    /// <para>[符号(1位) 指数(8位) 尾数(23位) 偏移(127)] | [Sign(1bit) Exponent(8bits) Mantissa(23bits) Bias(127)]</para>
     /// </summary>
     public struct LBFloat32 {
         public const float MaxValue = float.MaxValue;
@@ -244,7 +244,7 @@ namespace LiteByte.Common {
     }
 
     /// <summary> 8字节有符号浮点数(IEEE-754 有效数字:15位) | 8-bytes signed float(IEEE754 significant digits:15)
-    /// <para>[符号(1位) 指数(11位) 尾数(52位) 偏移(1023)] [Sign(1bit) Exponent(11bits) Mantissa(52bits) Bias(1023)]</para>
+    /// <para>[符号(1位) 指数(11位) 尾数(52位) 偏移(1023)] | [Sign(1bit) Exponent(11bits) Mantissa(52bits) Bias(1023)]</para>
     /// </summary>
     public struct LBFloat64 {
         public const double MaxValue = double.MaxValue;

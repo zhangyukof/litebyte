@@ -26,7 +26,7 @@
 // Purpose: Split and get keywords from source code
 // Author: ZhangYu
 // CreateDate: 2019-10-18
-// LastModifiedDate: 2019-11-12
+// LastModifiedDate: 2020-01-08
 #endregion
 namespace LiteByte.Analyzers {
 
@@ -94,7 +94,12 @@ namespace LiteByte.Analyzers {
                     }
                 } else if (c == ' ' || c == '\t') {
                     // 分隔符 | Separator characters
-                    needClear = AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
+                    if (lastLength > 0) {
+                        needClear = true;
+                        tokens.Add(new LBToken(lastTag, lastIndex, lastLength, lastRow, lastColumn));
+                    } else {
+                        needClear = false;
+                    }
                 } else if (c == '\r') {
                     // 忽略符 | Ignore character
                     continue;
@@ -106,28 +111,36 @@ namespace LiteByte.Analyzers {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
                 } else if (c == ';') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.Semicolon, index, row, column);
+                    tokens.Add(new LBToken(LBTag.Semicolon, index, 1, row, column));
+                    needClear = true;
                 } else if (c == ',') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.Comma, index, row, column);
+                    tokens.Add(new LBToken(LBTag.Comma, index, 1, row, column));
+                    needClear = true;
                 } else if (c == '[') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.LSquareBracket, index, row, column);
+                    tokens.Add(new LBToken(LBTag.LSquareBracket, index, 1, row, column));
+                    needClear = true;
                 } else if (c == ']') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.RSquareBracket, index, row, column);
+                    tokens.Add(new LBToken(LBTag.RSquareBracket, index, 1, row, column));
+                    needClear = true;
                 } else if (c == '<') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.LAngleBracket, index, row, column);
+                    tokens.Add(new LBToken(LBTag.LAngleBracket, index, 1, row, column));
+                    needClear = true;
                 } else if (c == '>') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.RAngleBracket, index, row, column);
+                    tokens.Add(new LBToken(LBTag.RAngleBracket, index, 1, row, column));
+                    needClear = true;
                 } else if (c == '{') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.LCurlyBrace, index, row, column);
+                    tokens.Add(new LBToken(LBTag.LCurlyBrace, index, 1, row, column));
+                    needClear = true;
                 } else if (c == '}') {
                     AddToken(tokens, lastTag, lastIndex, lastLength, lastRow, lastColumn);
-                    needClear = AddSplitChar(tokens, LBTag.RCurlyBrace, index, row, column);
+                    tokens.Add(new LBToken(LBTag.RCurlyBrace, index, 1, row, column));
+                    needClear = true;
                 } else {
                     // 其他符号 | Other characters
                     if (lastLength == 0) {
@@ -176,18 +189,8 @@ namespace LiteByte.Analyzers {
         }
 
         /// <summary> 添加一个词法单元信息到列表 | Add a token to list </summary>
-        private static bool AddToken(List<LBToken> list, LBTag tag, int index, int length, int row, int column) {
-            if (length > 0) {
-                list.Add(new LBToken(tag, index, length, row, column));
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary> 添加一个拆分符到列表 | Add a split character to list </summary>
-        private static bool AddSplitChar(List<LBToken> list, LBTag tag, int index, int row, int column) {
-            list.Add(new LBToken(tag, index, 1, row, column));
-            return true;
+        private static void AddToken(List<LBToken> list, LBTag tag, int index, int length, int row, int column) {
+            if (length > 0) list.Add(new LBToken(tag, index, length, row, column));
         }
 
     }
