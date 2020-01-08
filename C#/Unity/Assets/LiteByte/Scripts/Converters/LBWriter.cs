@@ -1038,6 +1038,20 @@ namespace LiteByte.Converters {
         /// <param name="array">数组 | Array</param>
         /// <param name="typeSize"> 元素类型字节大小 | byte size of element type</param>
         /// <returns> 是否写入了有效的数组长度(> 0) | If write a valid array length (> 0)</returns>
+        private bool WriteValidArrayLength(Array array, int typeSize) {
+            if (array == null) {
+                WriteVarLength(-1);
+                return false;
+            } else if (array.Length == 0) {
+                WriteVarLength(0);
+                return false;
+            } else {
+                WriteVarLength(array.Length);
+                RequireSize(array.Length * typeSize);
+                return true;
+            }
+        }
+
         private bool WriteValidArrayLength(Array array, float typeSize) {
             if (array == null) {
                 WriteVarLength(-1);
