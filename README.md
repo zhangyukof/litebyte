@@ -1,6 +1,6 @@
 [中文版](https://segmentfault.com/a/1190000021329368)
 ## LiteByte
-![LiteByte](web/images/icon_1.png)<br/>
+![LiteByte](res/img/icon_1.png)<br/>
 LiteByte is a lightweight binary data interchange format.<br/>
 Small size and easy to use are the design goals.
 
@@ -85,7 +85,7 @@ PlayerInfo info = LBUtil.Deserialize<PlayerInfo>(typeName, bytes);
 ```
 
 ### Output:
-![Output](web/images/demo_1.png)<br/>
+![Output](res/img/demo_1.png)<br/>
 
 ### Code instructions:
 1.Serialize use LBUtil.Serialize("name", obj).<br/>
