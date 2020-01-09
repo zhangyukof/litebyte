@@ -29,11 +29,12 @@
                 player.exp = 9999999
 
                 let bytes = LBUtil.serialize(name, player);
+                let vo = LBUtil.deserialize(name, bytes);
+
                 console.log("========== Serialize [" + name + "] ==========");
                 console.log(bytes);
 
                 console.log("========== Deserialize [" + name + "] ==========");
-                let vo = LBUtil.deserialize(name, bytes);
                 console.log(vo);
             }
 
@@ -71,10 +72,11 @@
 
             function lbTest(name, obj) {
                 let bytes = LBUtil.serialize(name, obj);
+                let vo = LBUtil.deserialize(name, bytes);
+                
                 console.log("========== Serialize [" + name + "] ==========");
                 console.log(bytes);
                 console.log("========== Deserialize [" + name + "] ==========");
-                let vo = LBUtil.deserialize(name, bytes);
                 console.log(vo);
             }
 
@@ -83,7 +85,7 @@
             function writeReadTest() {
                 let writer = new LBWriter();
                 let reader = new LBReader();
-                
+
                 // ========== Write Int ==========
                 writer.writeInt8(-8);
                 writer.writeInt8(LBInt8.MAX_VALUE);

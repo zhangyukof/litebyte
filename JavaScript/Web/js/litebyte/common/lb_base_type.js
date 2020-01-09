@@ -27,7 +27,7 @@
 // CreateDate:  2019-12-27
 // LastModifiedDate:  2020-01-07
 
-/** 基本类型(枚举类型) | BaseType(enum)  */
+/** 基本类型(枚举类型) | BaseType(enum) */
 const LBBaseType = {
     NONE: 0,
     BIT1: 1, BIT2: 2, BIT3: 3, BIT4: 4, BIT5: 5, BIT6: 6, BIT7: 7,
