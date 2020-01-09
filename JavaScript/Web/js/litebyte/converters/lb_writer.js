@@ -24,30 +24,14 @@
 //____________________________________ Intro ____________________________________
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
-// CreateDate: 2019-08-13
+// CreateDate: 2019-12-27
 // LastModifiedDate: 2020-01-07
 
-// Static Properties
-const LBWriterStatic = {
-    DEFAULT_CAPACITY:16,
-    BIT_LOCATION_VALUES:[0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F],
-    BIT1_LOCATION_VALUES:[0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80],
-    copyArray:function(sourceArray, targetArray) {
-        let length = sourceArray.length;
-        for (let i = 0; i < length; i++) {
-            targetArray[i] = sourceArray[i];
-        }
-    },
-    isFloat8(value) {
-        if (value < LBFloat8.MIN_VALUE || value > LBFloat8.MAX_VALUE) return false;
-        return value * 255 % 1 == 0;
-    }
-};
-
-// Binary Writer
+/** Binary Writer */
 class LBWriter {
 
     // _________________________ Init _________________________
+    /** @param {number} capacity */
     constructor(capacity) {
         if (capacity == null) capacity = this.DEFAULT_CAPACITY;
         if (capacity < 1) capacity = 1;
@@ -70,6 +54,7 @@ class LBWriter {
     }
 
     // _________________________ Bit _________________________
+    /** @param {boolean} value */
     writeBit1(value) {
         if (this._bitLocation > 7) {
             this.requireSize(1);
@@ -77,11 +62,12 @@ class LBWriter {
             this._bitLocation = 1;
             this._buffer[this._bitIndex] = value ? 1 : 0;
         } else {
-            if (value) this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | LBWriterStatic.BIT1_LOCATION_VALUES[this._bitLocation];
+            if (value) this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | LBWriter.BIT1_LOCATION_VALUES[this._bitLocation];
             this._bitLocation += 1;
         }
     }
 
+    /** @param {number} value */
     writeBit2(value) {
         if (value < LBBit2.MIN_VALUE || value > LBBit2.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit2 valid range:[0 ~ 3]";
@@ -112,6 +98,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number} value */
     writeBit3(value) {
         if (value < LBBit3.MIN_VALUE || value > LBBit3.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit3 valid range:[0 ~ 7]";
@@ -135,13 +122,14 @@ class LBWriter {
             // bytes[byteIndex] = b2 = value >> 8 - bitLocation
             // bitLocation = bitLocation + 3 - 8 = bitLocation - 5
             this.requireSize(1);
-            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & this.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
+            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & LBWriter.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
             this._buffer[this._byteIndex] = value >> 8 - this._bitLocation;
             this._bitLocation = this._bitLocation - 5;
             this._bitIndex = this._byteIndex++;
         }
     }
 
+    /** @param {number} value */
     writeBit4(value) {
         if (value < LBBit4.MIN_VALUE || value > LBBit4.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit4 valid range:[0 ~ 15]";
@@ -157,13 +145,14 @@ class LBWriter {
         } else {
             // 计算过程(和WriteBit3相同) | Process(Same as WriteBit3)
             this.requireSize(1);
-            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & this.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
+            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & LBWriter.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
             this._buffer[this._byteIndex] = value >> 8 - this._bitLocation;
             this._bitLocation = this._bitLocation - 4;
             this._bitIndex = this._byteIndex++;
         }
     }
 
+    /** @param {number} value */
     writeBit5(value) {
         if (value < LBBit5.MIN_VALUE || value > LBBit5.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit5 valid range:[0 ~ 31]";
@@ -179,13 +168,14 @@ class LBWriter {
         } else {
             // 计算过程(和WriteBit3相同) | Process(Same as WriteBit3)
             this.requireSize(1);
-            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & this.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
+            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & LBWriter.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
             this._buffer[this._byteIndex] = value >> 8 - this._bitLocation;
             this._bitLocation = this._bitLocation - 3;
             this._bitIndex = this._byteIndex++;
         }
     }
 
+    /** @param {number} value */
     writeBit6(value) {
         if (value < LBBit6.MIN_VALUE || value > LBBit6.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit6 valid range:[0 ~ 63]";
@@ -201,13 +191,14 @@ class LBWriter {
         } else {
             // 计算过程(和WriteBit3相同) | Process(Same as WriteBit3)
             this.requireSize(1);
-            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & this.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
+            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & LBWriter.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
             this._buffer[this._byteIndex] = value >> 8 - this._bitLocation;
             this._bitLocation = this._bitLocation - 2;
             this._bitIndex = this._byteIndex++;
         }
     }
 
+    /** @param {number} value */
     writeBit7(value) {
         if (value < LBBit7.MIN_VALUE || value > LBBit7.MAX_VALUE) {
             throw "value:" + value + " out of range! Bit7 valid range:[0 ~ 127]";
@@ -223,7 +214,7 @@ class LBWriter {
         } else {
             // 计算过程(和WriteBit3相同) | Process(Same as WriteBit3)
             this.requireSize(1);
-            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & this.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
+            this._buffer[this._bitIndex] = this._buffer[this._bitIndex] | (value & LBWriter.BIT_LOCATION_VALUES[8 - this._bitLocation]) << this._bitLocation;
             this._buffer[this._byteIndex] = value >> 8 - this._bitLocation;
             this._bitLocation = this._bitLocation - 1;
             this._bitIndex = this._byteIndex++;
@@ -231,6 +222,7 @@ class LBWriter {
     }
 
     // _________________________ Int _________________________
+    /** @param {number} value */
     writeInt8(value) {
         if (value < LBInt8.MIN_VALUE || value > LBInt8.MAX_VALUE) {
             throw "value:" + value + " out of range! Int8 valid range:[-128 ~ 127]";
@@ -239,6 +231,7 @@ class LBWriter {
         this._buffer[this._byteIndex++] = value;
     }
 
+    /** @param {number} value */
     writeInt16(value) {
         if (value < LBInt16.MIN_VALUE || value > LBInt16.MAX_VALUE) {
             throw "value:" + value + " out of range! Int16 valid range:[-32768 ~ 32767]";
@@ -248,6 +241,7 @@ class LBWriter {
         this._buffer[this._byteIndex++] = value >> 8;
     }
 
+    /** @param {number} value */
     writeInt24(value) {
         if (value < LBInt24.MIN_VALUE || value > LBInt24.MAX_VALUE) {
             throw "value:" + value + " out of range! Int24 valid range:[-8388608 ~ 8388607]";
@@ -259,6 +253,7 @@ class LBWriter {
         this._byteIndex += 3;
     }
 
+    /** @param {number} value */
     writeInt32(value) {
         if (value < LBInt32.MIN_VALUE || value > LBInt32.MAX_VALUE) {
             throw "value:" + value + " out of range! Int32 valid range:[-2147483648 ~ 2147483647]";
@@ -338,6 +333,7 @@ class LBWriter {
     */
 
     // _________________________ UInt _________________________
+    /** @param {number} value */
     writeUInt8(value) {
         if (value < LBUInt8.MIN_VALUE || value > LBUInt8.MAX_VALUE) {
             throw "value:" + value + " out of range! UInt8 valid range:[0 ~ 255]";
@@ -346,6 +342,7 @@ class LBWriter {
         this._buffer[this._byteIndex++] = value;
     }
 
+    /** @param {number} value */
     writeUInt16(value) {
         if (value < LBUInt16.MIN_VALUE || value > LBUInt16.MAX_VALUE) {
             throw "value:" + value + " out of range! UInt16 valid range:[0 ~ 65535]";
@@ -355,6 +352,7 @@ class LBWriter {
         this._buffer[this._byteIndex++] = value >> 8;
     }
 
+    /** @param {number} value */
     writeUInt24(value) {
         if (value < LBUInt24.MIN_VALUE || value > LBUInt24.MAX_VALUE) {
             throw "value:" + value + " out of range! UInt24 valid range:[0 ~ 16777215]";
@@ -366,6 +364,7 @@ class LBWriter {
         this._byteIndex += 3;
     }
 
+    /** @param {number} value */
     writeUInt32(value) {
         if (value < LBUInt32.MIN_VALUE || value > LBUInt32.MAX_VALUE) {
             throw "value:" + value + " out of range! UInt32 valid range:[0 ~ 4294967295]";
@@ -379,14 +378,16 @@ class LBWriter {
     }
 
     // _________________________ Float _________________________
+    /** @param {number} value */
     writeFloat8(value) {
-        if (!this.isFloat8(value)) {
+        if (!LBWriter.isFloat8(value)) {
             throw "value:" + value + " out of range! LBFloat8 valid range:[0 ~ 1 (0/255 ~ 255/255)]";
         }
         this.requireSize(1);
         this._buffer[this._byteIndex++] = value * 255;
     }
 
+    /** @param {number} value */
     writeFloat16(value) {
         if (value < LBFloat16.MIN_VALUE || value > LBFloat16.MAX_VALUE) {
             throw "value:" + value + " out of range! LBFloat16 valid range:[-1.31E+5 ~ 1.31E+5]";
@@ -407,6 +408,7 @@ class LBWriter {
         this._buffer[this._byteIndex++] = sign << 7 | exponent << 2 | mantissa >> 8;
     }
 
+    /** @param {number} value */
     writeFloat24(value) {
         if (value < LBFloat24.MIN_VALUE || value > LBFloat24.MAX_VALUE) {
             throw "value:" + value + " out of range! LBFloat24 valid range:[-3.6893+19 ~ 3.6893+19]";
@@ -429,6 +431,7 @@ class LBWriter {
         this._byteIndex += 3;
     }
 
+    /** @param {number} value */
     writeFloat32(value) {
         if (value < LBFloat32.MIN_VALUE || value > LBFloat32.MAX_VALUE) {
             throw "value:" + value + " out of range! LBFloat32 valid range:[-3.40282347E+38 ~ 3.40282347E+38]";
@@ -444,6 +447,7 @@ class LBWriter {
         this._byteIndex += 4;
     }
 
+    /** @param {number} value */
     writeFloat64(value) {
         this.requireSize(8);
         this._tempView.setFloat64(0, value, true);
@@ -462,6 +466,7 @@ class LBWriter {
     }
 
     // _________________________ VarInt _________________________
+    /** @param {number} value */
     writeVarInt16(value) {
         if (value <= LBInt8.MAX_VALUE && value >= LBInt8.MIN_VALUE) {
             this.writeBit1(false);
@@ -472,6 +477,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number} value */
     writeVarInt32(value) {
         if (value <= LBInt8.MAX_VALUE && value >= LBInt8.MIN_VALUE) {
             this.writeBit2(0);
@@ -488,6 +494,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number} value */
     writeVarInt64(value) {
         if (value <= LBInt8.MAX_VALUE && value >= LBInt8.MIN_VALUE) {
             this.writeBit3(0);
@@ -517,6 +524,7 @@ class LBWriter {
     }
 
     // _________________________ VarUInt _________________________
+    /** @param {number} value */
 	writeVarUInt16(value) {
         if (value <= LBUInt8.MAX_VALUE) {
             this.writeBit1(false);
@@ -527,6 +535,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number} value */
     writeVarUInt32(value) {
         if (value <= LBUInt8.MAX_VALUE) {
             this.writeBit2(0);
@@ -543,6 +552,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number} value */
     writeVarUInt64(value) {
         if (value <= LBUInt8.MAX_VALUE) {
             this.writeBit3(0);
@@ -582,6 +592,7 @@ class LBWriter {
     }
 
     // _________________________ String _________________________
+    /** @param {String} value */
     writeASCII(value) {
         if (!this.writeValidStringLength(value)) return;
         this.writeVarLength(value.length);
@@ -589,6 +600,7 @@ class LBWriter {
         this._byteIndex += LBEncoding.ASCII.getBytes(value, this._buffer, this._byteIndex);
     }
 
+    /** @param {String} value */
     writeUnicode(value) {
         if (!this.writeValidStringLength(value)) return;
         this.writeVarLength(value.length);
@@ -596,6 +608,7 @@ class LBWriter {
         this._byteIndex += LBEncoding.Unicode.getBytes(value, this._buffer, this._byteIndex);
     }
 
+    /** @param {String} value */
     writeUTF8(value) {
         if (!this.writeValidStringLength(value)) return;
         let byteCount = LBEncoding.UTF8.getByteCount(value);
@@ -604,6 +617,7 @@ class LBWriter {
         this._byteIndex += LBEncoding.UTF8.getBytes(value, this._buffer, this._byteIndex);
     }
 
+    /** @param {String} value */
     writeVarUnicode(value) {
         if (!this.writeValidStringLength(value)) return;
         // 获取字符数和字节数 | Get char count and byte count
@@ -635,6 +649,7 @@ class LBWriter {
     }
 
     // _________________________ Bit Array _________________________
+    /** @param {boolean[]} array */
     writeBit1Array(array) {
         if (!this.writeValidArrayLength(array, LBBit1.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -642,6 +657,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit2Array(array) {
         if (!this.writeValidArrayLength(array, LBBit2.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -649,6 +665,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit3Array(array) {
         if (!this.writeValidArrayLength(array, LBBit3.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -656,6 +673,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit4Array(array) {
         if (!this.writeValidArrayLength(array, LBBit4.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -663,6 +681,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit5Array(array) {
         if (!this.writeValidArrayLength(array, LBBit5.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -670,6 +689,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit6Array(array) {
         if (!this.writeValidArrayLength(array, LBBit6.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -677,6 +697,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeBit7Array(array) {
         if (!this.writeValidArrayLength(array, LBBit7.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -685,6 +706,7 @@ class LBWriter {
     }
 
     // _________________________ Int Array _________________________
+    /** @param {number[]} array */
     writeInt8Array(array) {
         if (!this.writeValidArrayLength(array, LBInt8.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -692,6 +714,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeInt16Array(array) {
         if (!this.writeValidArrayLength(array, LBInt16.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -699,6 +722,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeInt24Array(array) {
         if (!this.writeValidArrayLength(array, LBInt24.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -706,6 +730,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeInt32Array(array) {
         if (!this.writeValidArrayLength(array, LBInt32.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -744,6 +769,7 @@ class LBWriter {
     */
 
     // _________________________ UInt Array _________________________
+    /** @param {number[]} array */
     writeUInt8Array(array) {
         if (!this.writeValidArrayLength(array, LBUInt8.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -751,6 +777,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeUInt16Array(array) {
         if (!this.writeValidArrayLength(array, LBUInt16.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -758,6 +785,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeUInt24Array(array) {
         if (!this.writeValidArrayLength(array, LBUInt24.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -765,6 +793,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeUInt32Array(array) {
         if (!this.writeValidArrayLength(array, LBUInt32.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -803,6 +832,7 @@ class LBWriter {
     */
 
     // _________________________ Float Array _________________________
+    /** @param {number[]} array */
     writeFloat8Array(array) {
         if (!this.writeValidArrayLength(array, LBFloat8.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -810,6 +840,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeFloat16Array(array) {
         if (!this.writeValidArrayLength(array, LBFloat16.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -817,6 +848,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeFloat24Array(array) {
         if (!this.writeValidArrayLength(array, LBFloat24.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -824,6 +856,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeFloat32Array(array) {
         if (!this.writeValidArrayLength(array, LBFloat32.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -831,6 +864,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeFloat64Array(array) {
         if (!this.writeValidArrayLength(array, LBFloat64.BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -839,6 +873,7 @@ class LBWriter {
     }
 
     // _________________________ VarInt Array _________________________
+    /** @param {number[]} array */
     writeVarInt16Array(array) {
         if (!this.writeValidArrayLength(array, LBVarInt16.MIN_BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -846,6 +881,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeVarInt32Array(array) {
         if (!this.writeValidArrayLength(array, LBVarInt32.MIN_BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -863,6 +899,7 @@ class LBWriter {
     */
 
     // _________________________ VarUInt Array _________________________
+    /** @param {number[]} array */
     writeVarUInt16Array(array) {
         if (!this.writeValidArrayLength(array, LBVarUInt16.MIN_BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -870,6 +907,7 @@ class LBWriter {
         }
     }
 
+    /** @param {number[]} array */
     writeVarUInt32Array(array) {
         if (!this.writeValidArrayLength(array, LBVarUInt32.MIN_BYTE_SIZE)) return;
         for (let i = 0; i < array.length; i++) {
@@ -887,6 +925,7 @@ class LBWriter {
     */
 
     // _________________________ String Array _________________________
+    /** @param {string[]} array */
     writeASCIIArray(array) {
         if (!this.writeValidArrayLength(array, 1)) return;
         for (let i = 0; i < array.length; i++) {
@@ -894,6 +933,7 @@ class LBWriter {
         }
     }
 
+    /** @param {string[]} array */
     writeUnicodeArray(array) {
         if (!this.writeValidArrayLength(array, 2)) return;
         for (let i = 0; i < array.length; i++) {
@@ -901,6 +941,7 @@ class LBWriter {
         }
     }
 
+    /** @param {string[]} array */
     writeUTF8Array(array) {
         if (!this.writeValidArrayLength(array, 2)) return;
         for (let i = 0; i < array.length; i++) {
@@ -908,6 +949,7 @@ class LBWriter {
         }
     }
 
+    /** @param {string[]} array */
     writeVarUnicodeArray(array) {
         if (!this.writeValidArrayLength(array, 2)) return;
         for (let i = 0; i < array.length; i++) {
@@ -915,7 +957,19 @@ class LBWriter {
         }
     }
     
-    // _________________________ Tools _________________________    
+    // _________________________ Tools _________________________
+    static copyArray(sourceArray, targetArray) {
+        let length = sourceArray.length;
+        for (let i = 0; i < length; i++) {
+            targetArray[i] = sourceArray[i];
+        }
+    }
+
+    static isFloat8(value) {
+        if (value < LBFloat8.MIN_VALUE || value > LBFloat8.MAX_VALUE) return false;
+        return value * 255 % 1 == 0;
+    }
+
     writeValidStringLength(value) {
         if (value == null) {
             WriteVarLength(-1);
@@ -945,8 +999,20 @@ class LBWriter {
     }
 
     // _________________________ API _________________________
+    /**
+     * 把已写入的数据转换为字节数组 | Convert written data to byte array
+     * @returns {Uint8Array}
+     */
     toBytes() {
         return this._buffer.slice(0, this._byteIndex);
+    }
+
+    /** 擦除已写入的数据 以便重新使用 | Erase written data for reuse */
+    erase() {
+        for (let i = 0; i < this._byteIndex; i++) {
+            this._buffer[i] = 0;
+        }
+        this.position = 0;
     }
 
     get capacity() {
@@ -957,7 +1023,7 @@ class LBWriter {
         if (value < 0) throw "Capacity can't be negtive!";
         if (value > this._buffer.length) {
             let newBuffer = new Uint8Array(new ArrayBuffer(value));
-            this.copyArray(this._buffer, newBuffer);
+            LBWriter.copyArray(this._buffer, newBuffer);
             this._buffer = newBuffer;
         } else if (value < this._buffer.length) {
             this.dispose();
@@ -988,8 +1054,7 @@ class LBWriter {
 
 }
 
-LBWriter.prototype.DEFAULT_CAPACITY = LBWriterStatic.DEFAULT_CAPACITY;
-LBWriter.prototype.BIT_LOCATION_VALUES = LBWriterStatic.BIT_LOCATION_VALUES;
-LBWriter.prototype.BIT1_LOCATION_VALUES = LBWriterStatic.BIT1_LOCATION_VALUES;
-LBWriter.prototype.copyArray = LBWriterStatic.copyArray;
-LBWriter.prototype.isFloat8 = LBWriterStatic.isFloat8;
+// 静态属性 | Static Properties
+LBWriter.DEFAULT_CAPACITY = 16;
+LBWriter.BIT_LOCATION_VALUES = [0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F];
+LBWriter.BIT1_LOCATION_VALUES = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80];

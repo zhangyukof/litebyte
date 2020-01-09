@@ -24,14 +24,8 @@
 //____________________________________ Intro ____________________________________
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
-// CreateDate: 2019-08-13
+// CreateDate: 2019-12-27
 // LastModifiedDate: 2020-01-07
-
-// Static Properties
-const LBReaderStatic = {
-    BIT_LOCATION_VALUES:[0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F],
-    BIT1_LOCATION_VALUES:[0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80],
-}
 
 // Binary Writer
 class LBReader {
@@ -48,7 +42,7 @@ class LBReader {
             this._bitLocation = 1;
             return (this._bytes[this._bitIndex] & 1) != 0;
         } else {
-            return (this._bytes[this._bitIndex] & this.BIT1_LOCATION_VALUES[this._bitLocation++]) != 0;
+            return (this._bytes[this._bitIndex] & LBReader.BIT1_LOCATION_VALUES[this._bitLocation++]) != 0;
         }
     }
 
@@ -99,7 +93,7 @@ class LBReader {
             // int  v2 = (b2 & Bit3LocationValues[n2]) << n1 = (bytes[byteIndex] & Bit3LocationValues[bitLocation - 5]) << (8 - bitLocation)
             // int  v  = v1 | v2 << n1 = bytes[bitIndex] >> bitLocation | (bytes[byteIndex] & Bit3LocationValues[bitLocation - 5]) << (8 - bitLocation)
             // bitLocation = bitLocation + 3 - 8 = bitLocation - 5
-            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & this.BIT_LOCATION_VALUES[this._bitLocation - 5]) << 8 - this._bitLocation;
+            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & LBReader.BIT_LOCATION_VALUES[this._bitLocation - 5]) << 8 - this._bitLocation;
             this._bitLocation -= 5;
             this._bitIndex = this._byteIndex++;
             return value;
@@ -117,7 +111,7 @@ class LBReader {
             return value;
         } else {
             // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
-            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & this.BIT_LOCATION_VALUES[this._bitLocation - 4]) << 8 - this._bitLocation;
+            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & LBReader.BIT_LOCATION_VALUES[this._bitLocation - 4]) << 8 - this._bitLocation;
             this._bitLocation -= 4;
             this._bitIndex = this._byteIndex++;
             return value;
@@ -135,7 +129,7 @@ class LBReader {
             return value;
         } else {
             // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
-            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & this.BIT_LOCATION_VALUES[this._bitLocation - 3]) << 8 - this._bitLocation;
+            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & LBReader.BIT_LOCATION_VALUES[this._bitLocation - 3]) << 8 - this._bitLocation;
             this._bitLocation -= 3;
             this._bitIndex = this._byteIndex++;
             return value;
@@ -153,7 +147,7 @@ class LBReader {
             return value;
         } else {
             // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
-            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & this.BIT_LOCATION_VALUES[this._bitLocation - 2]) << 8 - this._bitLocation;
+            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & LBReader.BIT_LOCATION_VALUES[this._bitLocation - 2]) << 8 - this._bitLocation;
             this._bitLocation -= 2;
             this._bitIndex = this._byteIndex++;
             return value;
@@ -171,7 +165,7 @@ class LBReader {
             return value;
         } else {
             // 计算过程(和ReadBit3类似) | Process(Same as ReadBit3)
-            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & this.BIT_LOCATION_VALUES[this._bitLocation - 1]) << 8 - this._bitLocation;
+            let value = this._bytes[this._bitIndex] >> this._bitLocation | (this._bytes[this._byteIndex] & LBReader.BIT_LOCATION_VALUES[this._bitLocation - 1]) << 8 - this._bitLocation;
             this._bitLocation -= 1;
             this._bitIndex = this._byteIndex++;
             return value;
@@ -855,5 +849,6 @@ class LBReader {
 
 }
 
-LBReader.prototype.BIT_LOCATION_VALUES = LBReaderStatic.BIT_LOCATION_VALUES;
-LBReader.prototype.BIT1_LOCATION_VALUES = LBReaderStatic.BIT1_LOCATION_VALUES;
+// 静态属性 | Static Properties
+LBReader.BIT_LOCATION_VALUES = [0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F];
+LBReader.BIT1_LOCATION_VALUES = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80];

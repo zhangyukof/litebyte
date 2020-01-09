@@ -1141,7 +1141,7 @@ namespace LiteByte.Converters {
         #region (System.Object) Read CustomType
         private static object ReadCustomType(LBType lbType, Type type) {
             // 如果是Class 检查是否为空 |  If class then check if null
-            if (lbType.IsClass) if (reader.ReadBit1()) return null;
+            if (lbType.IsClass && reader.ReadBit1()) return null;
 
             // 读取字段信息 | Read field info
             object obj = LBReflectCache.GetClone(type);

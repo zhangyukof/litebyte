@@ -21,6 +21,9 @@ function importLiteByte() {
         var url = root + files[i];
         document.write('<script src="' + url + '" type="text/javascript" charset="utf-8"></script>');
     }
+    document.write('<script src="js/custom_config.js" type="text/javascript" charset="utf-8"></script>');
+    document.write('<script src="js/custom_config_loader.js" type="text/javascript" charset="utf-8"></script>');
+    document.write('<script src="js/custom_types.js" type="text/javascript" charset="utf-8"></script>');
 }
 
 importLiteByte();

@@ -24,7 +24,7 @@
 //____________________________________ Intro ____________________________________
 // Purpose: Convert base type to bytes
 // Author: ZhangYu
-// CreateDate: 2019-08-13
+// CreateDate: 2019-12-27
 // LastModifiedDate: 2020-01-07
 
 class LBASCIIEncoding {

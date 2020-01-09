@@ -5,6 +5,83 @@
             let writer = new LBWriter();
             let reader = new LBReader();
 
+            function loadConfig() {
+                let configLoader = new LBConfigLoader();
+                configLoader.loadConfig(onComplete);
+            }
+
+            function onComplete() {
+                playerInfoTest();
+                boolTypeTest();
+                int8TypeTest();
+                int16TypeTest();
+                int32TypeTest();
+            }
+            
+            function playerInfoTest() {
+                let name = "PlayerInfo";
+                let player = {};
+                player.id = 100001;
+                player.nickname = "冰封百度";
+                player.gender = 1;
+                player.isVip = true;
+                player.lv = 999;
+                player.hp = 999999;
+                player.mp = 999999;
+                player.exp = 9999999
+
+                let bytes = LBUtil.serialize(name, player);
+                console.log("========== Serialize [" + name + "] ==========");
+                console.log(bytes);
+
+                console.log("========== Deserialize [" + name + "] ==========");
+                let vo = LBUtil.deserialize(name, bytes);
+                console.log(vo);
+            }
+
+            function boolTypeTest() {
+                let name = "BoolType";
+                let obj = {};
+                obj.b1 = true;
+                obj.b2 = false;
+                obj.b3 = true;
+                obj.b4 = false;
+                obj.b5 = true;
+                obj.b6 = false;
+                obj.b7 = true;
+                obj.b8 = false;
+                lbTest("BoolType", obj);
+            }
+
+            function int8TypeTest() {
+                let obj = {};
+                obj.value = 127;
+                lbTest("Int8Type", obj);
+            }
+
+            function int16TypeTest() {
+                let obj = {};
+                obj.value = 32767;
+                lbTest("Int16Type", obj);
+            }
+
+            function int32TypeTest() {
+                let obj = {};
+                obj.value = 2147483647;
+                lbTest("Int32Type", obj);
+            }
+
+            function lbTest(name, obj) {
+                let bytes = LBUtil.serialize(name, obj);
+                console.log("========== Serialize [" + name + "] ==========");
+                console.log(bytes);
+                console.log("========== Deserialize [" + name + "] ==========");
+                let vo = LBUtil.deserialize(name, bytes);
+                console.log(vo);
+            }
+
+            loadConfig();
+
             // ========== Write Int ==========
             writer.writeInt8(-8);
             writer.writeInt8(LBInt8.MAX_VALUE);
@@ -352,6 +429,5 @@
     </head>
     <body>Hello World
         <p>Demo(alpha) info see [Console]</p>
-        <p>测试版 js功能还未完成</p>
     </body>
 </html>
