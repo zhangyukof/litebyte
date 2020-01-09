@@ -148,7 +148,7 @@ namespace LiteByte.Common {
                         type.InitCustomType(customType);
                     } else {
                         // 未知类型 | Unknown type
-                        throw new Exception("Unknown type type:\"" + type.Type + "\"");
+                        throw new Exception("Unknown type:\"" + type.Type + "\"");
                     }
                 }
             }
